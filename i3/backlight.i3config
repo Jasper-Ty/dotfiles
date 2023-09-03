@@ -1,0 +1,9 @@
+# ==============================================================================
+#   Backlight keybinds 
+# ==============================================================================
+
+set $backlightctl /home/jasper/dotfiles/scripts/backlightctl.sh
+set $step 10
+
+bindsym XF86MonBrightnessUp exec --no-startup-id $backlightctl up $step
+bindsym XF86MonBrightnessDown exec --no-startup-id $backlightctl down $step
