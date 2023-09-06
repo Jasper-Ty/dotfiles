@@ -26,3 +26,5 @@ exec --no-startup-id ~/dotfiles/scripts/polybar.sh
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# Redshift is a f.lux clone
+exec --no-startup-id redshift
