@@ -1,6 +1,10 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+#
+
+DOTFILES=/home/jasper/dotfiles
+export DOTFILES
 
 # If not running interactively, don't do anything
 case $- in
@@ -120,9 +124,6 @@ fi
 export VISUAL=nvim
 export EDITOR=nvim
 
-alias caro="cargo"
-. "$HOME/.cargo/env"
-
 alias rustij="zellij --layout rust"
 
 export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
@@ -137,8 +138,4 @@ eval $(opam env)
 
 export PATH
 
-# sets manwidth to terminal width
-alias man='MANWIDTH=$((COLUMNS > 80 ? 80 : COLUMNS)) man'
-export MANPAGER='nvim +Man!'
-
-alias nnvim='nvim -u /home/jasper/.config/lazyvim/init.lua'
+source $DOTFILES/bash/man.sh
