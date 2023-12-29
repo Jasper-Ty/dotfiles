@@ -2,6 +2,7 @@
 
 ## Prerequisites
 
+- picom
 - Mononoki Nerd Font 
 - rofi
 

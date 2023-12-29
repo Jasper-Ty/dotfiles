@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+exit
+
 MAIN=eDP
 OUTPUT=HDMI-A-0
 
