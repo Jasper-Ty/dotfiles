@@ -4,5 +4,5 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # start a terminal
 bindsym $mod+Return exec $term
 
-# start dmenu (a program launcher)
+# start rofi
 bindsym $mod+d exec --no-startup-id i3-msg 'exec --no-startup-id rofi -i -show drun -modi drun -show-icons'

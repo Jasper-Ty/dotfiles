@@ -4,9 +4,6 @@ set $mod Mod4
 # Sets default terminal 
 set $term alacritty
 
-# Sets program launcher
-set $launcher dmenu_run
-
 # Sets this config directory
 set $cfgdir /home/jasper/dotfiles
 
