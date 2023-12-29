@@ -2,7 +2,7 @@ CFG_FILES= $(sort $(wildcard *.i3config))
 TARGET=config
 
 config: $(CFG_FILES)
-	rm -f config && tail -n +1 $(CFG_FILES) | sed -e 's/==>\s*\(.*\)\..*\s*<==/##### \1 #####/g' > $(TARGET)
+	rm -f config && tail -n +1 $(CFG_FILES) | sed -e 's/==>\s*\(.*\)\..*\s*<==/##############\n# \1\n/g' > $(TARGET)
 
 .PHONY: clean
 
