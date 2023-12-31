@@ -2,14 +2,12 @@
 
 # Basic backlight brightness control tool.
 
-
 CARD="/sys/class/backlight/amdgpu_bl0"
 if ! [[ -d "$CARD" ]] 
 then
     echo "Cannot find backlight device"
     exit
 fi
-
 
 BRIGHTNESS="$CARD/brightness"
 if ! [[ -w "$BRIGHTNESS" ]] 
@@ -69,6 +67,5 @@ then
     echo $RES > "$BRIGHTNESS"
     exit
 fi
-
 
 echo "USAGE: $0 set/up/down amount"

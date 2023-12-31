@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
+
+#
+# something is up with my udev rule, so disabling this for now
 exit
+# 
+#
 
 MAIN=eDP
 OUTPUT=HDMI-A-0

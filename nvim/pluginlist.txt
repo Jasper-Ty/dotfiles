@@ -1,0 +1,21 @@
+- cmp-buffer
+- cmp-nvim-lsp
+- cmp-nvim-lsp-signature-help
+- cmp-nvim-lua
+- cmp-path
+cmp-vsnip
+lualine.nvim
+- mason-lspconfig.nvim
+- mason.nvim
+- nvim-cmp
+nvim-dap
+- nvim-lspconfig
+nvim-treesitter
+nvim-web-devicons
+plenary.nvim
+rust-tools.nvim
+telescope-file-browser.nvim
+telescope.nvim
+- tokyonight.nvim 
+vim-vsnip
+- vimtex

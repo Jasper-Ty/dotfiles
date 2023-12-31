@@ -14,7 +14,7 @@ set $lock /home/jasper/dotfiles/scripts/lock-blur.sh
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $lock
 
 # Start polybar
-exec --no-startup-id ~/dotfiles/scripts/polybar.sh
+exec --no-startup-id ~/dotfiles/polybar/polybar.sh
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
