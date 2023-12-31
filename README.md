@@ -1,5 +1,7 @@
 # Jasper's dotfiles
 
+![screenshot](img/screenshot.png)
+
 ## About
 
 This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source of truth.
