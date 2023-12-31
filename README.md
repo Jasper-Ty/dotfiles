@@ -1,8 +1,22 @@
 # Jasper's dotfiles
 
+## About
+
+This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source of truth.
+
 ## Info
 
-I run Ubuntu 22.04 LTS on my ThinkPad X13 Gen 2a
+- **OS:** Ubuntu 22.04 LTS
+- **Window Manager:** i3
+- **Status Bars:** polybar
+- **Terminal:** alacritty
+- **Shell:** bash
+- **Text Editor:** Neovim
+- **PDF Viewer:** zathura
+- **Multiplexer:** Zellij
+- **Browser:** Firefox
+- **App Launcher:** rofi
+- **Color Scheme:** Tokyo Night
 
 ## Notes
 
@@ -11,9 +25,6 @@ I run Ubuntu 22.04 LTS on my ThinkPad X13 Gen 2a
 
 ## Todo
 
-- fix symlink bug
-- add neovim files
-- do some install scripts
+- better symlink script
 - fix system tray bug, unresponsive?
 - fix monitor udev rule and script
-- switch to zsh?
