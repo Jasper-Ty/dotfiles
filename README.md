@@ -20,6 +20,10 @@ This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source o
 - **App Launcher:** rofi
 - **Color Scheme:** Tokyo Night
 
+### Misc
+
+I use redshift to get a schedule blue light filter
+
 ## Notes
 
 - set a udev rule to chgrp and chmod /sys/class/backlight/amdgpu_bl0/backlight.
