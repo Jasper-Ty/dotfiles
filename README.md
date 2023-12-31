@@ -1,6 +1,5 @@
 # Jasper's dotfiles
 
-
 ## Info
 
 I run Ubuntu 22.04 LTS on my ThinkPad X13 Gen 2a
@@ -12,7 +11,9 @@ I run Ubuntu 22.04 LTS on my ThinkPad X13 Gen 2a
 
 ## Todo
 
+- fix symlink bug
 - add neovim files
 - do some install scripts
 - fix system tray bug, unresponsive?
 - fix monitor udev rule and script
+- switch to zsh?
