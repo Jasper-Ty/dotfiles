@@ -5,7 +5,6 @@
 
 I run Ubuntu 22.04 LTS on my ThinkPad X13 Gen 2a
 
-
 ## Notes
 
 - set a udev rule to chgrp and chmod /sys/class/backlight/amdgpu_bl0/backlight.
@@ -15,3 +14,5 @@ I run Ubuntu 22.04 LTS on my ThinkPad X13 Gen 2a
 
 - add neovim files
 - do some install scripts
+- fix system tray bug, unresponsive?
+- fix monitor udev rule and script
