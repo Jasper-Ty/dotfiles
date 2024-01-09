@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Sets default terminal 
-set $term alacritty
+set $term alacritty 
 
 # Sets this config directory
 set $cfgdir /home/jasper/dotfiles
