@@ -24,6 +24,11 @@ This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source o
 
 I use redshift to get a schedule blue light filter
 
+Command Line niceties:
+- **cat**: bat
+- **ls**: lsd
+- **top**: bottom 
+
 ## Notes
 
 - set a udev rule to chgrp and chmod /sys/class/backlight/amdgpu_bl0/backlight.
