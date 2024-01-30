@@ -22,12 +22,15 @@ This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source o
 
 ### Misc
 
+I use TeX Live 2022 as my LaTeX distribution
+
 I use redshift to get a schedule blue light filter
 
 Command Line niceties:
 - **cat**: bat
 - **ls**: lsd
 - **top**: bottom 
+- **grep**: ripgrep
 
 ## Notes
 
@@ -36,6 +39,5 @@ Command Line niceties:
 
 ## Todo
 
-- better symlink script
 - fix system tray bug, unresponsive?
 - fix monitor udev rule and script

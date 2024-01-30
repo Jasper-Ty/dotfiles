@@ -68,4 +68,4 @@ then
     exit
 fi
 
-echo "USAGE: $0 set/up/down amount"
+echo "USAGE: $0 set/up/down AMOUNT"

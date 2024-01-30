@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source $DOTFILES/scripts/helpers.sh
 
-ln -sfv "$PWD/alacritty.yml" "/home/$USER/.config/alacritty/alacritty.yml"
-ln -sfv "$PWD/themes" "/home/$USER/.config/alacritty/themes"
+symlink "alacritty/alacritty.yml" "$HOME/.config/alacritty/alacritty.yml"
+symlink "alacritty/themes" "$HOME/.config/alacritty/themes"

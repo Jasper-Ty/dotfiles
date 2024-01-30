@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source $DOTFILES/scripts/helpers.sh
 
 make
-ln -sfv $(realpath "./config") "/home/$USER/.config/i3/config"
+symlink "i3/config" "$HOME/.config/i3/config"

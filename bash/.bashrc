@@ -91,8 +91,36 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+echo "Checking installed programs..."
+
+# check if lsd is installed
+if command -v lsd &> /dev/null; then
+    echo "lsd: ✅"
+    alias ls='lsd'
+else
+    echo "lsd: ❌"
+fi
+
+if command -v btm &> /dev/null; then
+    echo "btm: ✅"
+else
+    echo "btm: ❌"
+
+fi
+
+if command -v nvim &> /dev/null; then
+    echo "Neovim: ✅"
+else
+    echo "Neovim: ❌"
+fi
+
+if command -v zellij &> /dev/null; then
+    echo "Zellij: ✅"
+else
+    echo "Zellij: ❌"
+fi
+
 # some more ls aliases
-alias ls='lsd'
 alias ll='ls -alF'
 alias la='ls -A'
 alias sl='ls'
@@ -121,21 +149,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export VISUAL=nvim
-export EDITOR=nvim
-
-alias rustij="zellij --layout rust"
-
-export ZELLIJ_CONFIG_DIR="$HOME/.config/zellij"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# set path
-PATH="$PATH:/home/jasper/.local/bin:$(yarn global bin)"
+source $DOTFILES/bash/man.sh
+source $DOTFILES/bash/path.sh
+
 eval $(opam env)
 
-export PATH
-
-source $DOTFILES/bash/man.sh

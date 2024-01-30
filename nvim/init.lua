@@ -18,6 +18,9 @@ vim.opt.rtp:prepend(lazypath)
 
 --- Start lazy
 require("lazy").setup({
+    --- misc
+    "folke/which-key.nvim",
+
     --- tokyonight colorscheme
     {
         "folke/tokyonight.nvim",
@@ -32,7 +35,22 @@ require("lazy").setup({
     {
         "lervag/vimtex",
         config = function()
+            vim.opt_local.conceallevel = 2
             vim.g.vimtex_view_method = "zathura"
+            vim.g.vimtex_syntax_conceal = {
+                conceallevel = 2,
+                math_bounds = 1,
+            }
+            vim.g.vimtex_compiler_latexmk = {
+                aux_dir = 'aux',
+                out_dir = 'out',
+                options = {
+                    '-verbose',
+                    '-file-line-error',
+                    '-interaction=nonstopmode',
+                    '-shell-escape',
+                },
+            }
         end,
     },
 
@@ -79,20 +97,21 @@ require("lazy").setup({
     },
 
     --- nvim-cmp
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
     {
         "hrsh7th/nvim-cmp",
         dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
             "neovim/nvim-lspconfig",
         },
         lazy = false,
-        priority = 30,
+        priority = 0,
         config = function() 
             local cmp = require("cmp")
 
+            vim.opt.completeopt = { "menu", "menuone", "noselect" }
             cmp.setup({
                 sources = cmp.config.sources({
                     { name = "nvim-lsp" }
@@ -112,4 +131,7 @@ require("lazy").setup({
             require("lualine").setup()
         end,
     },
+
+    -- sage
+    "petRUShka/vim-sage"
 })

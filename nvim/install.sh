@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source $DOTFILES/scripts/helpers.sh
 
-ln -sfv $(realpath "./init.lua") "/home/$USER/.config/nvim/init.lua"
-ln -sfv $(realpath "./lua") "/home/$USER/.config/nvim/lua"
+symlink "nvim/init.lua" "$HOME/.config/nvim/init.lua"
+symlink "nvim/lua" "$HOME/.config/nvim/lua"

@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+source $DOTFILES/scripts/helpers.sh
 
-ln -sfv $(realpath ".bashrc") "/home/$USER/.bashrc"
+symlink "bash/.bashrc" "$HOME/.bashrc"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONFIG="/home/jasper/dotfiles/polybar/config.ini"
+CONFIG="$DOTFILES/polybar/config.ini"
 LOG="/tmp/polybar.log"
 
 # Terminate already running polybar instances
