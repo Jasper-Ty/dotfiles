@@ -1,4 +1,6 @@
 % based off of gilles castel's preamble
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jaspercommon}[Jasper LaTeX Common Stuff]
 
 % Some basic packages
 \usepackage[utf8]{inputenc}
@@ -11,6 +13,24 @@
 \usepackage{enumitem}
 
 \pdfminorversion=7
+
+% Links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+% Titles
+\usepackage{titling}
+\pretitle{\begin{center} \bfseries \Huge}
+\posttitle{\end{center}}
+\preauthor{\begin{center} \Large}
+\postauthor{\end{center}}
+
 
 % Don't indent paragraphs, leave some space between them
 \usepackage{parskip}
@@ -71,6 +91,8 @@
 \usepackage{mdframed}
 \mdfsetup{skipabove=1em,skipbelow=0em}
 \theoremstyle{definition}
+\newmdtheoremenv[nobreak=true]{exercise}{Exercise}
+\newmdtheoremenv[nobreak=true]{example}{Example}
 \newmdtheoremenv[nobreak=true]{theorem}{Theorem}
 \newmdtheoremenv[nobreak=true]{corollary}{Corollary}
 \newmdtheoremenv[nobreak=true]{definition}{Definition}
@@ -78,6 +100,8 @@
 \newmdtheoremenv[nobreak=true]{consequence}{Consequence}
 \newmdtheoremenv[nobreak=true]{lemma}{Lemma}
 \newmdtheoremenv[nobreak=true]{proposition}{Proposition}
+\newmdtheoremenv[nobreak=true]{plan}{Plan}
+\newmdtheoremenv[nobreak=true]{question}{Question}
 
 \newtheorem*{remark}{Remark}
 
@@ -100,9 +124,13 @@
 \fancyfoot[C]{\thepage}     % Center
 
 
-
-% Todonotes and inline notes in fancy boxes
+% todo notes
+\setlength {\marginparwidth}{2cm}
 \usepackage{todonotes}
+\newcommand{\unsure}[1]{\todo[color=red!40]{#1}}
+\newcommand{\inlineunsure}[1]{\todo[inline,color=red!40]{#1}}
+
+% Colored boxes
 \usepackage{tcolorbox}
 
 % Make boxes breakable
@@ -111,5 +139,3 @@
 % Fix some stuff
 % %http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
 \pdfsuppresswarningpagegroup=1
-
-\author{Jasper Ty}

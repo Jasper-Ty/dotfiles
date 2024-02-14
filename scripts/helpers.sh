@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+function sourceif {
+    if [ -f $1 ]; then
+        source $1
+    fi
+}
+
 function symlink {
     local SOURCE_FILE=$1
     local TARGET_FILE=$2
