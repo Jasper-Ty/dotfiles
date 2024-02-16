@@ -76,6 +76,17 @@ xterm*|rxvt*)
     ;;
 esac
 
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+if hascommand 'lsd'; then
+    alias ls='lsd'
+fi
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias sl='ls'
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -87,43 +98,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-echo "Checking installed programs..."
-
-# check if lsd is installed
-if command -v lsd &> /dev/null; then
-    echo "lsd: ✅"
-    alias ls='lsd'
-else
-    echo "lsd: ❌"
-fi
-
-if command -v btm &> /dev/null; then
-    echo "btm: ✅"
-else
-    echo "btm: ❌"
-
-fi
-
-if command -v nvim &> /dev/null; then
-    echo "Neovim: ✅"
-else
-    echo "Neovim: ❌"
-fi
-
-if command -v zellij &> /dev/null; then
-    echo "Zellij: ✅"
-else
-    echo "Zellij: ❌"
-fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias sl='ls'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -155,6 +129,6 @@ export NVM_DIR="$HOME/.nvm"
 
 source $DOTFILES/bash/man.sh
 source $DOTFILES/bash/path.sh
+source $DOTFILES/scripts/helpers.sh
 
 eval $(opam env)
-
