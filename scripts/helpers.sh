@@ -36,10 +36,11 @@ function printinstalled {
     local CMD=$1
 
     if hascommand "$CMD"; then
-        echo -e "${GREEN}✅${COLOR_OFF} $CMD"
+        cecho "GREEN" "✅"
     else
-        echo -e "${RED}❌${COLOR_OFF} $CMD"
+        cecho "RED" "❌"
     fi
+    cecho "BLUE" " $CMD\n"
 }
 
 declare -a PROGRAMS 

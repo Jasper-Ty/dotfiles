@@ -6,6 +6,8 @@
 DOTFILES=/home/jasper/dotfiles
 export DOTFILES
 
+source $DOTFILES/scripts/helpers.sh
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -129,6 +131,5 @@ export NVM_DIR="$HOME/.nvm"
 
 source $DOTFILES/bash/man.sh
 source $DOTFILES/bash/path.sh
-source $DOTFILES/scripts/helpers.sh
 
 eval $(opam env)
