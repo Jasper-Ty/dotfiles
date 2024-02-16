@@ -21,7 +21,13 @@ function symlink {
     fi
 }
 
-function hascommand { command -v $1 &> /dev/null; }
+alias hascommand='command -v &>/dev/null'
+
+function aliasif {
+    local CMD=$2
+    local ALIAS=$1
+    hascommand $CMD && alias $ALIAS=$CMD
+}
 
 function install {
     local PACKAGE=$1
@@ -29,34 +35,5 @@ function install {
         sudo apt install $1
     else
         echo "Does not have apt"
-    fi
-}
-
-function printinstalled {
-    local CMD=$1
-
-    if hascommand "$CMD"; then
-        cecho "GREEN" "✅"
-    else
-        cecho "RED" "❌"
-    fi
-    cecho "BLUE" " $CMD\n"
-}
-
-declare -a PROGRAMS 
-PROGRAMS=("lsd" "btm" "nvim" "zellij" "nvm" "opam" "gap" "sage" "cargo" "rustc" "rustup")
-
-function dotfiles {
-    local CMD=$1
-
-    if [ "$CMD" = "checkinstalled" ]; then
-        echo "Checking installed programs..."
-        
-        for PROGRAM in "${PROGRAMS[@]}"
-        do
-            printinstalled $PROGRAM 
-        done
-    else
-        echo "Command $CMD not found."
     fi
 }
