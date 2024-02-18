@@ -16,7 +16,7 @@ function cecho {
 }
 
 
-function ctest {
+function colortest {
     #
     # ANSI color scheme script featuring Space Invaders
     #

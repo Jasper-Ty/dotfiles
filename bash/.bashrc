@@ -117,4 +117,4 @@ export NVM_DIR="$HOME/.nvm"
 
 source $DOTFILES/bash/path.sh
 
-eval $(opam env)
+# eval "$(starship init bash)"
