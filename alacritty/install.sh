@@ -2,6 +2,6 @@
 source $DOTFILES/scripts/helpers.sh
 
 mkdir -p "$HOME/.config/alacritty"
-
-symlink "alacritty/alacritty.yml" "$HOME/.config/alacritty/alacritty.yml"
-symlink "alacritty/themes" "$HOME/.config/alacritty/themes"
+mkdir -p "$HOME/.config/alacritty/themes"
+symlink "alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+symlink "alacritty/themes/tokyo-night.toml" "$HOME/.config/alacritty/themes/tokyo-night.toml"
