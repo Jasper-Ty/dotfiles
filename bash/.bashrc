@@ -3,7 +3,7 @@
 # for examples
 #
 
-DOTFILES=/home/jasper/dotfiles
+DOTFILES="$HOME/dotfiles"
 export DOTFILES
 
 source $DOTFILES/scripts/dotfiles.sh
