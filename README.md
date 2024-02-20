@@ -4,7 +4,9 @@
 
 ## About
 
-This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source of truth.
+This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source of truth. 
+
+This setup is partially replicated on my Desktop PC.
 
 ## Info
 
@@ -24,7 +26,7 @@ This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source o
 
 I use TeX Live 2022 as my LaTeX distribution
 
-I use redshift to get a schedule blue light filter
+I use redshift to get a schedule blue light filter, although it's kind of annoying to use so I'm thinking of just not using it anymore.
 
 Command Line niceties:
 - **cat**: bat
@@ -39,5 +41,10 @@ Command Line niceties:
 
 ## Todo
 
+- Change i3 code to use TOML instead of YAML
+- Bash alias organization
+- Use associative arrays in scripts/dotfiles
+- TeX Live
+- Bash path organization
 - fix system tray bug, unresponsive?
 - fix monitor udev rule and script

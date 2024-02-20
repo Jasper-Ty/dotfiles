@@ -15,6 +15,7 @@ function printinstalled {
 }
 
 COMMANDLINETOOLS=(
+    "rg"
     "lsd"
     "bat"
     "btm"
@@ -41,9 +42,11 @@ PYCMDS=(
 )
 MATHCMDS=(
     "sage"
+    "pdftex"
 )
 OTHER=(
     "nvim"
+    "keepassxc"
 )
 
 

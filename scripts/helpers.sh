@@ -28,12 +28,3 @@ function aliasif {
     local ALIAS=$1
     hascommand $CMD && alias $ALIAS=$CMD
 }
-
-function install {
-    local PACKAGE=$1
-    if hascommand apt; then
-        sudo apt install $1
-    else
-        echo "Does not have apt"
-    fi
-}
