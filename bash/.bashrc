@@ -8,10 +8,6 @@ export DOTFILES
 
 source $DOTFILES/scripts/dotfiles.sh
 
-if hascommand bat; then
-    export MANPAGER='bat'
-fi
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
