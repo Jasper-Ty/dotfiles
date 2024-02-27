@@ -4,9 +4,9 @@
 
 ## About
 
-This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source of truth. 
+This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source of truth. I took lots of inspiration on the scripting side from [James Shackleford's dotfiles](https://github.com/tshack/dotfiles).
 
-This setup is partially replicated on my Desktop PC.
+This setup is partially replicated on my Desktop PC, my Raspberry Pi, and on a VPS I maintain.
 
 ## Info
 
