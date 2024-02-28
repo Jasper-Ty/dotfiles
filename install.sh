@@ -1,8 +1,27 @@
-#!/usr/bin/env bash
+#/usr/bin/env bash
 
 # Get dotfiles dir 
+# Written by shack
 export DOTFILES
 DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Update dotfiles via git
-[ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin main 
+source $DOTFILES/scripts/helpers.sh
+source $DOTFILES/scripts/colors.sh
+
+if [ "$#" -eq 0 ] 
+then
+    cecho "PURPLE" "INSTALLING EVERYTHING\n"
+else
+    for item in $@
+    do
+        INSTALLER="$DOTFILES/$item/install.sh"
+        if [ -e $INSTALLER ]
+        then
+            cecho "BLUE" "Installing "
+            cecho "GREEN" "$item\n"
+            source $INSTALLER
+        else
+            cecho "RED" "install.sh not found for $item"
+        fi
+    done
+fi
