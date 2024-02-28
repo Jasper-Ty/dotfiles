@@ -17,8 +17,8 @@ else
         INSTALLER="$DOTFILES/$item/install.sh"
         if [ -e $INSTALLER ]
         then
-            cecho "BLUE" "Installing "
-            cecho "GREEN" "$item\n"
+            cecho "BLUE" "Installing configs for\n"
+            cecho "GREEN" "    $item\n"
             source $INSTALLER
         else
             cecho "RED" "install.sh not found for $item"
