@@ -44,7 +44,9 @@ Command Line niceties:
 - Change i3 code to use TOML instead of YAML
 - Bash alias organization
 - Use associative arrays in scripts/dotfiles
-- TeX Live
+- TeX Live files
+- Tmux / Zellij stuff
 - Bash path organization
+- Use starship
 - fix system tray bug, unresponsive?
 - fix monitor udev rule and script

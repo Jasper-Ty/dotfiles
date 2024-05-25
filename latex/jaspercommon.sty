@@ -93,16 +93,24 @@
 \theoremstyle{definition}
 \newmdtheoremenv[nobreak=true]{exercise}{Exercise}
 \newmdtheoremenv[nobreak=true]{example}{Example}
-\newmdtheoremenv[nobreak=true]{theorem}{Theorem}
+\mdtheorem[nobreak=true]{theorem}{Theorem}
 \newmdtheoremenv[nobreak=true]{corollary}{Corollary}
-\newmdtheoremenv[nobreak=true]{definition}{Definition}
+\mdtheorem[nobreak=true]{definition}{Definition}
 \newmdtheoremenv[nobreak=true]{property}{Property}
 \newmdtheoremenv[nobreak=true]{consequence}{Consequence}
-\newmdtheoremenv[nobreak=true]{lemma}{Lemma}
-\newmdtheoremenv[nobreak=true]{proposition}{Proposition}
+\mdtheorem[nobreak=true]{lemma}{Lemma}
+\mdtheorem[nobreak=true]{proposition}{Proposition}
 \newmdtheoremenv[nobreak=true]{plan}{Plan}
 \newmdtheoremenv[nobreak=true]{question}{Question}
 
+\theoremstyle{plain}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{thm}{Theorem}
+
+
+\theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 
 % End example and intermezzo environments with a small diamond (just like proof

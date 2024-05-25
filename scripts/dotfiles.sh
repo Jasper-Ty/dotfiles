@@ -20,7 +20,6 @@ COMMANDLINETOOLS=(
     "bat"
     "btm"
     "zellij"
-    "lovesay"
     "starship"
 )
 RUSTCMDS=(
@@ -31,8 +30,6 @@ RUSTCMDS=(
 CCMDS=(
     "gcc"
     "cmake"
-    "make"
-    "git"
 )
 PYCMDS=(
     "python"
@@ -45,6 +42,8 @@ MATHCMDS=(
     "pdftex"
 )
 OTHER=(
+    "make"
+    "git"
     "nvim"
     "keepassxc"
 )

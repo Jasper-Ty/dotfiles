@@ -82,5 +82,3 @@ if ! shopt -oq posix; then
 fi
 
 source $DOTFILES/bash/path.sh
-
-# eval "$(starship init bash)"
