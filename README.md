@@ -37,7 +37,6 @@ Command Line niceties:
 ## Notes
 
 - set a udev rule to chgrp and chmod /sys/class/backlight/amdgpu_bl0/backlight.
-- had to do some stupid apparmor shit I don't remember how to do to get the redshift script working
 
 ## Todo
 
