@@ -1,4 +1,4 @@
-# dotfiles
+e dotfiles
 
 ![screenshot](img/screenshot.png)
 
@@ -27,8 +27,6 @@ This setup is partially replicated on my Desktop PC, my Raspberry Pi, and on a V
 ### Misc
 
 I use TeX Live 2022 as my LaTeX distribution
-
-I use redshift to get a schedule blue light filter, although it's kind of annoying to use so I'm thinking of just not using it anymore.
 
 Command Line niceties:
 - **cat**: bat
