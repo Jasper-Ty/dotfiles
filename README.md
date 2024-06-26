@@ -33,6 +33,7 @@ Command Line niceties:
 - **ls**: lsd
 - **top**: bottom 
 - **grep**: ripgrep
+- **mc**: fx
 
 ## Notes
 
@@ -49,3 +50,4 @@ Command Line niceties:
 - Use starship
 - fix system tray bug, unresponsive?
 - fix monitor udev rule and script
+- have a special workspace for external monitor
