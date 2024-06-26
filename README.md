@@ -41,7 +41,6 @@ Command Line niceties:
 
 ## Todo
 
-- Change i3 code to use TOML instead of YAML
 - Bash alias organization
 - Use associative arrays in scripts/dotfiles
 - TeX Live files
