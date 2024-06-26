@@ -1,8 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-#
-
 DOTFILES="$HOME/dotfiles"
 export DOTFILES
 
@@ -56,6 +51,7 @@ esac
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 aliasif "ls" "lsd"
+export EDITOR="nvim"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -81,4 +77,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source $DOTFILES/bash/path.sh
+PATH="/usr/local/texlive/2024/bin/x86_64-linux:$PATH"; export PATH
+MANPATH="/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH"; export MANPATH
+INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"; export INFOPATH 
