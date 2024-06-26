@@ -26,7 +26,7 @@ This setup is partially replicated on my Desktop PC, my Raspberry Pi, and on a V
 
 ### Misc
 
-I use TeX Live 2022 as my LaTeX distribution
+I use TeX Live as my LaTeX distribution
 
 Command Line niceties:
 - **cat**: bat
