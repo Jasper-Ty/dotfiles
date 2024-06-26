@@ -1,9 +1,10 @@
 # LaTeX
 
-I use TeX Live. 
+LaTex stuff. Preamble is based off of [Gilles Castel's](https://github.com/gillescastel/university-setup)
 
-LaTex stuff. Preamble is based off of [https://github.com/gillescastel/university-setup](Gilles Castel's)
+I use TeX Live (currently 2024). 
 
 ## Todo
 
-
+- Figure out Garamond math font stuff
+- Better setup for numbering and environments 
