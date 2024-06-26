@@ -15,6 +15,7 @@ function printinstalled {
 }
 
 COMMANDLINETOOLS=(
+    "fx"
     "rg"
     "lsd"
     "bat"
@@ -47,8 +48,6 @@ OTHER=(
     "nvim"
     "keepassxc"
 )
-
-
 
 function dotfiles {
     local CMD=$1
