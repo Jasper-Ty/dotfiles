@@ -1,23 +1,34 @@
 #!/usr/bin/env bash
 
-function cecho {
-    BLACK="\033[0;30m"        # Black
-    RED="\033[0;31m"          # Red
-    GREEN="\033[0;32m"        # Green
-    YELLOW="\033[0;33m"       # Yellow
-    BLUE="\033[0;34m"         # Blue
-    PURPLE="\033[0;35m"       # Purple
-    CYAN="\033[0;36m"         # Cyan
-    WHITE="\033[0;37m"        # White
-
-    NC="\033[0m" # No Color
-
-    printf "${!1}${2}${NC}" # <-- bash
+function can_color_output {
+    if [ -t 1 ] && [ $(tput colors) -ge 8 ]
+    then
+        return 0
+    else
+        return 1
+    fi
 }
 
+function cecho {
+    local readonly BLACK="\033[0;30m"        # Black
+    local readonly RED="\033[0;31m"          # Red
+    local readonly GREEN="\033[0;32m"        # Green
+    local readonly YELLOW="\033[0;33m"       # Yellow
+    local readonly BLUE="\033[0;34m"         # Blue
+    local readonly PURPLE="\033[0;35m"       # Purple
+    local readonly CYAN="\033[0;36m"         # Cyan
+    local readonly WHITE="\033[0;37m"        # White
+
+    if can_color_output
+    then
+        printf "${!1}${2}\033[0m"
+    else
+        printf "${2}"
+    fi
+
+}
 
 function colortest {
-    #
     # ANSI color scheme script featuring Space Invaders
     #
     # Original: http://crunchbanglinux.org/forums/post/126921/#p126921
