@@ -14,6 +14,9 @@ function printinstalled {
     fi
 }
 
+FONTS=(
+    "Mononoki"
+)
 COMMANDLINETOOLS=(
     "fx"
     "rg"
@@ -53,6 +56,23 @@ function dotfiles {
     local CMD=$1
 
     if [ "$CMD" = "checkinstalled" ]; then
+        cecho "PURPLE" "  FONTS\n"
+        for FONT in "${FONTS[@]}"
+        do
+            FCLIST=$(fc-list | grep $FONT)
+            if [[ $FCLIST ]] 
+            then
+                cecho "GREEN"   "   ✅  $FONT\n"
+                echo "$FCLIST" | while read LINE 
+                do
+                    F=$(echo "$LINE" | awk -F ':' '{print $2,"("$3")"}')
+                    cecho "BLUE" "      $F\n"
+                done
+            else
+                cecho "RED"     "   ❌  $FONT\n"
+            fi
+        done
+
         cecho "PURPLE" "  COMMAND LINE TOOLS\n"
         for PROGRAM in "${COMMANDLINETOOLS[@]}"
         do
