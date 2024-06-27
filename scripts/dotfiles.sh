@@ -60,10 +60,10 @@ function dotfiles {
         for FONT in "${FONTS[@]}"
         do
             FCLIST=$(fc-list | grep $FONT)
-            if [[ $FCLIST ]] 
+            if [[ $FCLIST ]]
             then
                 cecho "GREEN"   "   ✅  $FONT\n"
-                echo "$FCLIST" | while read LINE 
+                echo "$FCLIST" | while read LINE
                 do
                     F=$(echo "$LINE" | awk -F ':' '{print $2,"("$3")"}')
                     cecho "BLUE" "      $F\n"
