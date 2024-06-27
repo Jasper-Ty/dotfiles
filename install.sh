@@ -8,6 +8,7 @@ source $DOTFILES/scripts/helpers.sh
 source $DOTFILES/scripts/colors.sh
 
 ITEMS=(
+    "rust"
     "alacritty"
     "bash"
     "i3"
@@ -26,7 +27,7 @@ then
         installer="$item/install.sh"
         if [ -e $installer ]
         then
-            cecho "BLUE" "Installing configs for "
+            cecho "BLUE" "Installing "
             cecho "GREEN" "$item\n"
             source $installer
         else
@@ -40,8 +41,8 @@ else
         installer="$item/install.sh"
         if [ -e $installer ]
         then
-            cecho "BLUE" "Installing configs for\n"
-            cecho "GREEN" "    $item\n"
+            cecho "BLUE" "Installing "
+            cecho "GREEN" "$item\n"
             source $installer
         else
             cecho "RED" "install.sh not found for $item"
