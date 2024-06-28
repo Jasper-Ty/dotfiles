@@ -55,16 +55,8 @@ require("lazy").setup({
     },
 
     --- Mason
-    { 
-        "williamboman/mason.nvim",
-        lazy = false,
-        priority = 0,
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        lazy = false,
-        priority = 0,
-    },
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -101,15 +93,13 @@ require("lazy").setup({
         "hrsh7th/nvim-cmp",
         dependencies = {
             "neovim/nvim-lspconfig",
-
             "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
 
             "SirVer/ultisnips",
-            "hrsh7th/cmp-vsnip",
-            "hrsh7th/vim-vsnip",
+            "quangnguyen30192/cmp-nvim-ultisnips",
         },
         lazy = false,
         priority = 0,
@@ -134,11 +124,21 @@ require("lazy").setup({
                     ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 }),
                 sources = cmp.config.sources({
-                    { name = "nvim-lsp" },
+                    { name = "nvim_lsp" },
+                    { name = "nvim_lua" },
                     { name = "ultisnips" },
+                    { name = "path" }, 
+                }, {
                     { name = "buffer" }
                 })
             })
+
+            -- Set up lspconfig
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+            require("lspconfig")["texlab"].setup { capabilities = capabilities }
+            require("lspconfig")["rust_analyzer"].setup { capabilities = capabilities }
+            require("lspconfig")["pyright"].setup { capabilities = capabilities }
         end,
     },
 
