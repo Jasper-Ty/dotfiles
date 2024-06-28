@@ -14,6 +14,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+--- Keymaps
+vim.keymap.set('n', 'K', vim.lsp.with(vim.lsp.buf.hover, { border = "rounded" }))
 
 --- Start lazy
 require("lazy").setup({
@@ -80,6 +82,9 @@ require("lazy").setup({
                             enable = false;
                         }
                     }
+                },
+                handlers = {
+                    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
                 }
             })
             lspconfig.html.setup({})
@@ -94,9 +99,13 @@ require("lazy").setup({
         dependencies = {
             "neovim/nvim-lspconfig",
             "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
 
             "SirVer/ultisnips",
             "quangnguyen30192/cmp-nvim-ultisnips",
+
+            "micangl/cmp-vimtex",
+            "kdheepak/cmp-latex-symbols",
         },
         lazy = false,
         priority = 0,
@@ -129,9 +138,18 @@ require("lazy").setup({
                     ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 }),
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp" },
-                    { name = "ultisnips" },
+                    { name = 'nvim_lsp' },
+                    { name = 'latex_symbols' },
+                    { name = 'ultisnips' },
                 })
+            })
+
+            -- vimtex
+            cmp.setup.filetype("tex", {
+                sources = {
+                    { name = 'vimtex' },
+                    { name = 'buffer' },
+                }
             })
 
             -- Set up lspconfig
