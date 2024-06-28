@@ -26,6 +26,20 @@ function sourceif {
     fi
 }
 
+function install_package {
+    local PKG=$1
+    dpkg-query -s $PKG > /dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        sudo apt-get install $PKG
+        if [ $? -ne 0 ]; then
+            log_error "Failed to install package: $PKG"
+        fi
+    else
+        cecho "GREEN" "Already installed: $PKG\n"
+        return
+    fi
+}
+
 function symlink {
     local SOURCE_FILE=$1
     local TARGET_FILE=$2
