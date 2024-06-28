@@ -18,7 +18,7 @@ This setup is partially replicated on my Desktop PC, my Raspberry Pi, and on a V
 - **Window Manager:** i3
 - **Status Bars:** polybar
 - **Terminal:** alacritty
-- **Shell:** bash
+- **Shell:** bash (**I want to change to [fish](https://fishshell.com/) soon**)
 - **Text Editor:** Neovim
 - **PDF Viewer:** zathura
 - **Multiplexer:** Zellij
