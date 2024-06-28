@@ -94,9 +94,6 @@ require("lazy").setup({
         dependencies = {
             "neovim/nvim-lspconfig",
             "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
 
             "SirVer/ultisnips",
             "quangnguyen30192/cmp-nvim-ultisnips",
@@ -114,10 +111,18 @@ require("lazy").setup({
                     end
                 },
                 window = {
-
+                    completion = cmp.config.window.bordered(),
+                    documentation = cmp.config.window.bordered(),
                 },
                 mapping = cmp.mapping.preset.insert({
                     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-g>'] = function()
+                        if cmp.visible_docs() then
+                            cmp.close_docs()
+                        else
+                            cmp.open_docs()
+                        end
+                    end,
                     ['<C-f>'] = cmp.mapping.scroll_docs(4),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-e>'] = cmp.mapping.abort(),
@@ -125,11 +130,7 @@ require("lazy").setup({
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
-                    { name = "nvim_lua" },
                     { name = "ultisnips" },
-                    { name = "path" }, 
-                }, {
-                    { name = "buffer" }
                 })
             })
 
