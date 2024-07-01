@@ -71,6 +71,10 @@ alias ls="lsd"
 
 export EDITOR="nvim"
 
+# TeX Live
 PATH="/usr/local/texlive/2024/bin/x86_64-linux:$PATH"; export PATH
 MANPATH="/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH"; export MANPATH
 INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"; export INFOPATH 
+
+# Rust
+PATH="$HOME/.cargo/bin:$PATH"; export PATH
