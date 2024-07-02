@@ -4,7 +4,7 @@ import = [ "~/.config/alacritty/themes/tokyo-night.toml" ]
 WINIT_X11_SCALE_FACTOR = "1"
 
 [font]
-size = 18.0
+size = 17.0
 
 [font.bold]
 family = "Mononoki Nerd Font"
