@@ -1,32 +1,24 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-source $DOTFILES/scripts/colors.sh
+. $DOTFILES/scripts/colors.sh
 
-function log_error {
-    local MSG=$1
-    ERRORS=("${ERRORS[@]}" "$MSG")
+log_error() {
+    echo $1 > /tmp/dotfiles_install_errors
 }
 
-function report_errors {
-    if [ "${#ERRORS[@]}" -ne 0 ]
+report_errors() {
+    if [ -f /tmp/dotfiles_install_errors ]
     then
         cecho "RED" "Found errors!\n"
-        for ERROR in "${ERRORS[@]}"
-        do
-            cecho "RED" "   $ERROR\n"
-        done
+        echo "\033[0;31m"
+        cat /tmp/dotfiles_install_errors
+        echo "\033[0m"
     else
         cecho "GREEN" "No errors!\n"
     fi
 }
 
-function sourceif {
-    if [ -f $1 ]; then
-        source $1
-    fi
-}
-
-function install_package {
+install_package() {
     local PKG=$1
     dpkg-query -s $PKG > /dev/null 2>&1
     if [ $? -ne 0 ]; then
@@ -40,11 +32,11 @@ function install_package {
     fi
 }
 
-function symlink {
+symlink() {
     local SOURCE_FILE=$1
     local TARGET_FILE=$2
 
-    SOURCE_FILE=$(realpath $DOTFILES/$SOURCE_FILE)
+    SOURCE_FILE=$( realpath $DOTFILES/$SOURCE_FILE )
     rm -rf $TARGET_FILE 2>&1 > /dev/null
 
     ln -sfv "$SOURCE_FILE" "$TARGET_FILE" 
@@ -55,7 +47,7 @@ function symlink {
 
 alias hascommand='command -v &>/dev/null'
 
-function aliasif {
+aliasif() {
     local CMD=$2
     local ALIAS=$1
     hascommand $CMD && alias $ALIAS=$CMD

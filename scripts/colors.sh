@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-function can_color_output {
-    if [ -t 1 ] && [ $(tput colors) -ge 8 ]
+can_color_output() {
+    if [ -t 1 ] && [ $( tput colors ) -ge 8 ]
     then
         return 0
     else
@@ -9,7 +9,7 @@ function can_color_output {
     fi
 }
 
-function cecho {
+cecho() {
     local readonly BLACK="\033[0;30m"        # Black
     local readonly RED="\033[0;31m"          # Red
     local readonly GREEN="\033[0;32m"        # Green
@@ -21,14 +21,16 @@ function cecho {
 
     if can_color_output
     then
-        printf "${!1}${2}\033[0m"
+        echo $( eval echo \$$1 )
+        echo "$2"
+        echo "\033[0m"
     else
-        printf "${2}"
+        echo "${2}"
     fi
 
 }
 
-function colortest {
+colortest() {
     # ANSI color scheme script featuring Space Invaders
     #
     # Original: http://crunchbanglinux.org/forums/post/126921/#p126921
