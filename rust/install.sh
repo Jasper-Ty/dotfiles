@@ -1,18 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-source $DOTFILES/scripts/helpers.sh
+. $DOTFILES/scripts/helpers.sh
 
-readonly UTILITIES=(
-    "felix"
-    "ripgrep"
-    "lsd"
-    "bat"
-    "bottom"
-    "zellij"
-    "starship"
-)
+UTILITIES="felix ripgrep lsd bat bottom zellij starship"
 
-if command -v &>/dev/null "rustup"
+if command -v "rustup" >/dev/null 2>&1
 then
     cecho "GREEN" "rustup is installed\n"
 
@@ -27,7 +19,7 @@ else
 fi
 
 cecho "PURPLE" "Installing utilities\n"
-for program in "${UTILITIES[@]}"
+for program in $UTILITIES
 do
     cargo install $program
 done

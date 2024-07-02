@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-source $DOTFILES/scripts/helpers.sh
+. $DOTFILES/scripts/helpers.sh
 
 if command -v > /dev/null "alacritty"
 then

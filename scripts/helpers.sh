@@ -10,9 +10,9 @@ report_errors() {
     if [ -f /tmp/dotfiles_install_errors ]
     then
         cecho "RED" "Found errors!\n"
-        echo "\033[0;31m"
+        printf "\033[0;31m"
         cat /tmp/dotfiles_install_errors
-        echo "\033[0m"
+        printf "\033[0m"
     else
         cecho "GREEN" "No errors!\n"
     fi

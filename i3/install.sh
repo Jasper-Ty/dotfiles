@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-source $DOTFILES/scripts/helpers.sh
+#!/bin/sh
+. $DOTFILES/scripts/helpers.sh
 
 install_package i3
 

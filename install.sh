@@ -1,35 +1,24 @@
-#/usr/bin/env bash
+#!/bin/sh
 
 # Get dotfiles dir 
 export DOTFILES
-DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DOTFILES="$( cd "$( dirname "$0" )" && pwd )"
 
-source $DOTFILES/scripts/helpers.sh
-source $DOTFILES/scripts/colors.sh
+. $DOTFILES/scripts/helpers.sh
 
-ITEMS=(
-    "rust"
-    "alacritty"
-    "bash"
-    "i3"
-    "latex"
-    "nvim"
-    "polybar"
-    "rofi"
-    "sage"
-)
+ITEMS="rust alacritty bash fish i3 latex nvim polybar rofi sage"
 
 if [ "$#" -eq 0 ] 
 then
     cecho "PURPLE" "INSTALLING EVERYTHING\n"
-    for item in "${ITEMS[@]}"
+    for item in $ITEMS 
     do
         installer="$item/install.sh"
-        if [ -e $installer ]
+        if [ -f $installer ]
         then
             cecho "BLUE" "Installing "
             cecho "GREEN" "$item\n"
-            source $installer
+            . $installer
         else
             cecho "RED" "install.sh not found for "
             cecho "GREEN" "$item\n"
@@ -39,11 +28,11 @@ else
     for item in $@
     do
         installer="$item/install.sh"
-        if [ -e $installer ]
+        if [ -f $installer ]
         then
             cecho "BLUE" "Installing "
             cecho "GREEN" "$item\n"
-            source $installer
+            . $installer
         else
             cecho "RED" "install.sh not found for $item"
         fi
@@ -53,3 +42,5 @@ fi
 cecho "PURPLE" "Done!\n"
 
 report_errors
+
+rm -rf /tmp/dotfiles_install_errors 2>&1 >/dev/null

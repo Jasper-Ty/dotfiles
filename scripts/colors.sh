@@ -21,11 +21,9 @@ cecho() {
 
     if can_color_output
     then
-        echo $( eval echo \$$1 )
-        echo "$2"
-        echo "\033[0m"
+        printf "$( eval echo \$$1 )$2\033[0m"
     else
-        echo "${2}"
+        printf "$2"
     fi
 
 }
