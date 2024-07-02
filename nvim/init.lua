@@ -65,8 +65,6 @@ require("lazy").setup({
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
         },
-        lazy = false,
-        priority = 0,
         config = function()
             local mason = require("mason")
             local masonlsp = require("mason-lspconfig")
@@ -148,7 +146,7 @@ require("lazy").setup({
             cmp.setup.filetype("tex", {
                 sources = {
                     { name = 'vimtex' },
-                    { name = 'buffer' },
+                    { name = 'ultisnips' },
                 }
             })
 
