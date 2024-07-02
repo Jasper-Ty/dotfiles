@@ -1,4 +1,4 @@
-e dotfiles
+# dotfiles
 
 ![screenshot](img/screenshot.png)
 
