@@ -3,9 +3,12 @@ add_newline=false
 # Tokyo Night preset
 format = """
 $username\
+[ ](bg:#212736)\
 $directory\
+[ ](bg:#212736)\
 $git_branch\
 $git_status\
+[ ](bg:#212736)\
 $nodejs\
 $rust\
 $golang\
@@ -17,12 +20,12 @@ $php\
 show_always = true
 style_user = "bold bg:#212736"
 style_root = "bold bg:#212736"
-format = '[ $user  ]($style)'
+format = '[ $user ]($style)'
 disabled = false
 
 [directory]
 style = "bg:#212736"
-format = "[ $path  ]($style)"
+format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 read_only = " 󰌾"
@@ -40,7 +43,7 @@ format = '[[ $symbol $branch ](bg:#212736)]($style)'
 
 [git_status]
 style = "bg:#212736"
-format = '[[($all_status$ahead_behind )](bg:#212736) ]($style)'
+format = '[[($all_status$ahead_behind )](bg:#212736)]($style)'
 
 [nodejs]
 symbol = ""

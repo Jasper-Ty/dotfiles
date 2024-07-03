@@ -18,8 +18,8 @@ $php\
 
 [username]
 show_always = true
-style_user = "bold fg:#c0caf5 bg:#ff007c"
-style_root = "bold fg:#c0caf5 bg:#ff007c"
+style_user = "bold fg:#1a1b26 bg:#ff007c"
+style_root = "bold fg:#1a1b26 bg:#ff007c"
 format = '[ $user ]($style)'
 disabled = false
 
