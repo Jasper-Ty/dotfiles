@@ -6,4 +6,4 @@ Themes are from the [Alacritty themes repository](https://github.com/alacritty/a
 
 ## Notes
 
-- Alacritty must be installed manually-- install is a little *too* involved to be scripted (varying dependencies, post install steps, ...)
+- Alacritty **must** be installed manually-- install is a little *too* involved to be scripted (varying dependencies, post install steps, ...)

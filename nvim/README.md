@@ -1,9 +1,7 @@
 # Neovim config
 
-I usually build Neovim from source. Currently on 0.9.2.
+[Neovim](https://neovim.io/) is my text editor of choice.
 
-I use Lazy
+I usually build from source. Currently on 0.9.6.
 
-## Todo
-
-- create a vimrc
+I use Lazy as my plugin manager.
