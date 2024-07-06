@@ -1,21 +1,121 @@
-% based off of gilles castel's preamble
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{jaspercommon}[Jasper LaTeX Common Stuff]
-
-% Some basic packages
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{textcomp}
-\usepackage{url}
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage{booktabs}
-\usepackage{enumitem}
-
+\ProvidesPackage{jaspercommon}[Jasper's Common LaTeX Stuff]
 \pdfminorversion=7
 
-% Links
-\usepackage{hyperref}
+
+% == Options ==================================================================
+% Garamond font
+\newif\ifgaramond
+\DeclareOption{garamond}{\garamondtrue}
+\ProcessOptions
+
+
+% == Font encoding stuff ======================================================
+% \RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{textcomp}
+
+
+% == Math stuff ==============================================================
+\RequirePackage{amsmath, mathtools, amsthm}
+
+
+% == Graphics =================================================================
+\RequirePackage{graphicx} % Mostly needed for \includegraphics{_}. 
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+% \RequirePackage{pgfplots}
+
+
+% == Little things ============================================================
+\RequirePackage{url}      % \url command
+\RequirePackage{booktabs} % Table optimizations
+\RequirePackage{enumitem} % More enumerate-style environments
+
+
+% == Use E.B Garamond font ===================================================
+\ifgaramond
+    \RequirePackage{ebgaramond}
+    \RequirePackage{ebgaramond-maths}
+\fi
+
+
+% == Math fonts ==============================================================
+\RequirePackage{amsfonts, amssymb, mathrsfs}
+
+% Bold math
+\RequirePackage{bm}
+% Some shortcuts
+\newcommand\NN{\ensuremath{\mathbb{N}}}
+\newcommand\RR{\ensuremath{\mathbb{R}}}
+\newcommand\ZZ{\ensuremath{\mathbb{Z}}}
+\newcommand\PP{\ensuremath{\mathbb{P}}}
+\newcommand\OO{\ensuremath{\emptyset}}
+\newcommand\QQ{\ensuremath{\mathbb{Q}}}
+\newcommand\CC{\ensuremath{\mathbb{C}}}
+\newcommand\KK{\ensuremath{\mathbb{K}}}
+
+
+% == Environments ============================================================
+% These are all based on Darij Grinberg's environment setup
+% https://www.cip.ifi.lmu.de/~grinberg/index.html
+\RequirePackage{framed}
+\theoremstyle{definition}
+\newtheorem{theo}{Theorem}[subsection]
+\newtheorem{exer}{Exercise}[subsection]
+\newenvironment{theorem}[1][]
+{\begin{theo}[#1]\begin{leftbar}}
+{\end{leftbar}\end{theo}}
+\newtheorem{lem}[theo]{Lemma}
+\newenvironment{lemma}[1][]
+{\begin{lem}[#1]\begin{leftbar}}
+{\end{leftbar}\end{lem}}
+\newtheorem{prop}[theo]{Proposition}
+\newenvironment{proposition}[1][]
+{\begin{prop}[#1]\begin{leftbar}}
+{\end{leftbar}\end{prop}}
+\newtheorem{defi}[theo]{Definition}
+\newenvironment{definition}[1][]
+{\begin{defi}[#1]\begin{leftbar}}
+{\end{leftbar}\end{defi}}
+\newtheorem{remk}[theo]{Remark}
+\newenvironment{remark}[1][]
+{\begin{remk}[#1]\begin{leftbar}}
+{\end{leftbar}\end{remk}}
+\newtheorem{coro}[theo]{Corollary}
+\newenvironment{corollary}[1][]
+{\begin{coro}[#1]\begin{leftbar}}
+{\end{leftbar}\end{coro}}
+\newtheorem{conv}[theo]{Convention}
+\newenvironment{convention}[1][]
+{\begin{conv}[#1]\begin{leftbar}}
+{\end{leftbar}\end{conv}}
+\newtheorem{quest}[theo]{Question}
+\newenvironment{question}[1][]
+{\begin{quest}[#1]\begin{leftbar}}
+{\end{leftbar}\end{quest}}
+\newtheorem{warn}[theo]{Warning}
+\newenvironment{warning}[1][]
+{\begin{warn}[#1]\begin{leftbar}}
+{\end{leftbar}\end{warn}}
+\newtheorem{conj}[theo]{Conjecture}
+\newenvironment{conjecture}[1][]
+{\begin{conj}[#1]\begin{leftbar}}
+{\end{leftbar}\end{conj}}
+\newtheorem{exam}[theo]{Example}
+\newenvironment{example}[1][]
+{\begin{exam}[#1]\begin{leftbar}}
+{\end{leftbar}\end{exam}}
+\newtheorem{exmp}[exer]{Exercise}
+\newenvironment{exercise}[1][]
+{\begin{exmp}[#1]\begin{leftbar}}
+{\end{leftbar}\end{exmp}}
+\newenvironment{statement}{\begin{quote}}{\end{quote}}
+\newenvironment{fineprint}{\begin{small}}{\end{small}}
+
+
+% == Links ====================================================================
+\RequirePackage{hyperref}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -23,102 +123,60 @@
     linkcolor=black
 }
 
-% Titles
-\usepackage{titling}
-\pretitle{\begin{center} \bfseries \Huge}
-\posttitle{\end{center}}
-\preauthor{\begin{center} \Large}
-\postauthor{\end{center}}
+
+% == Title setup =============================================================
+\RequirePackage{titling}
+\pretitle{\begin{flushright} \bfseries \Huge}
+\posttitle{\end{flushright}}
+\preauthor{\begin{flushright} \Large}
+\postauthor{\end{flushright}}
 
 
-% Don't indent paragraphs, leave some space between them
-\usepackage{parskip}
-
-% Hide page number when page is empty
-\usepackage{emptypage}
-\usepackage{subcaption}
-\usepackage{multicol}
-\usepackage{xcolor}
-
-% Math stuff
-\usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
-% Fancy script capitals
-\usepackage{mathrsfs}
-\usepackage{cancel}
-% Bold math
-\usepackage{bm}
-% Some shortcuts
-\newcommand\N{\ensuremath{\mathbb{N}}}
-\newcommand\R{\ensuremath{\mathbb{R}}}
-\newcommand\Z{\ensuremath{\mathbb{Z}}}
-\newcommand\Pos{\ensuremath{\mathbb{P}}}
-\renewcommand\O{\ensuremath{\emptyset}}
-\newcommand\Q{\ensuremath{\mathbb{Q}}}
-\newcommand\C{\ensuremath{\mathbb{C}}}
-
-% Easily typeset systems of equations (French package)
-\usepackage{systeme}
-
-% Put x \to \infty below \lim
-\let\svlim\lim\def\lim{\svlim\limits}
-
-%Make implies and impliedby shorter
-\let\implies\Rightarrow
-\let\impliedby\Leftarrow
-\let\iff\Leftrightarrow
-\let\epsilon\varepsilon
-
-% \let\phi\varphi
-
-% Command for short corrections
-% Usage: 1+1=\correct{3}{2}
-
-\definecolor{correct}{HTML}{009900}
-\newcommand\correct[2]{\ensuremath{\:}{\color{red}{#1}}\ensuremath{\to }{\color{correct}{#2}}\ensuremath{\:}}
-\newcommand\green[1]{{\color{correct}{#1}}}
-
+% == Miscellaneous helper commands ===========================================
+% hide 
+\newcommand\hide[1]{}
 % horizontal rule
-\newcommand\hr{
-    \noindent\rule[0.5ex]{\linewidth}{0.5pt}
+\newcommand\hr{\noindent\rule[0.5ex]{\linewidth}{0.5pt}}
+
+
+% == Geometry =================================================================
+\usepackage{geometry}
+\geometry{
+    a5paper,
+    left=18mm,
+    right=16mm,
+    top=22mm,
+    bottom=24mm,
 }
 
-% hide parts
-\newcommand\hide[1]{}
 
-% Environments
-\makeatother
-% For box around Definition, Theorem, \ldots
-\usepackage{mdframed}
-\mdfsetup{skipabove=1em,skipbelow=0em}
-\theoremstyle{definition}
-\newmdtheoremenv[nobreak=true]{exercise}{Exercise}
-\newmdtheoremenv[nobreak=true]{example}{Example}
-\mdtheorem[nobreak=true]{theorem}{Theorem}
-\newmdtheoremenv[nobreak=true]{corollary}{Corollary}
-\mdtheorem[nobreak=true]{definition}{Definition}
-\newmdtheoremenv[nobreak=true]{property}{Property}
-\newmdtheoremenv[nobreak=true]{consequence}{Consequence}
-\mdtheorem[nobreak=true]{lemma}{Lemma}
-\mdtheorem[nobreak=true]{proposition}{Proposition}
-\newmdtheoremenv[nobreak=true]{plan}{Plan}
-\newmdtheoremenv[nobreak=true]{question}{Question}
+% == Headers ==================================================================
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
 
-\theoremstyle{plain}
-\newtheorem{lem}{Lemma}
-\newtheorem{prop}{Proposition}
-\newtheorem{cor}{Corollary}
-\newtheorem{thm}{Theorem}
+% Page numbers bottom right
+\fancyfoot{}
+\fancyfoot[R]{\thepage}
+
+% Sets up title top left my name top right
+\newcommand{\titleauthorhead}{
+    \makeatletter
+    \fancyhead[L]{\@title}
+    \fancyhead[R]{\@author}
+    \makeatother
+}
 
 
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
+% == Other ====================================================================
+% Hide page number for empty pages
+\RequirePackage{emptypage}
+% Captions
+\RequirePackage{subcaption}
 
-% End example and intermezzo environments with a small diamond (just like proof
-% environments end with a small square)
-\usepackage{etoolbox}
-% \AtEndEnvironment{opmerking}{\null\hfill$\diamond$}%
 
-% Fix some spacing
+% == Hacky nonsense I don't understand follows (thanks stackexchange!) ========
+% %http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
+\pdfsuppresswarningpagegroup=1
 % http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm
 \makeatletter
 \def\thm@space@setup{%
@@ -126,29 +184,5 @@
 }
 \makeatother
 
-% Headers
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyfoot[C]{\thepage}     % Center
 
-
-% todo notes
-\setlength {\marginparwidth}{2cm}
-\usepackage{todonotes}
-\newcommand{\unsure}[1]{\todo[color=red!40]{#1}}
-\newcommand{\inlineunsure}[1]{\todo[inline,color=red!40]{#1}}
-
-% Colored boxes
-\usepackage{tcolorbox}
-
-% Make boxes breakable
-\tcbuselibrary{breakable}
-
-% Fix some stuff
-% %http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
-\pdfsuppresswarningpagegroup=1
-
-% dont care, im gonna use this command
-\makeatletter
-\let\atop\@@atop
-\makeatother
+% == DONE! ====================================================================
