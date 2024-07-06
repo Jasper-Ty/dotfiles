@@ -6,6 +6,8 @@ I'm mainly using this because I didn't want to know more shell and terminal wiza
 
 ## "Frozen in the Past" Prompt
 
+![screenshot](img/prompt.png)
+
 My prompt grays out after hitting return. 
 This is based off of [what James Shackleford does with his zsh powerline prompt](https://github.com/tshack/dotfiles/tree/master/zsh). I did this not only because it looks cool, but for the same rationale he wrote:
 
