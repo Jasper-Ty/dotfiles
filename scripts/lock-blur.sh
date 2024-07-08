@@ -1,4 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
+# lock-blur.sh
+# This script runs whenever my laptop goes to sleep.
 
 # take a screenshot
 scrot /tmp/screenshot.png
