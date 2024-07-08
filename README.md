@@ -42,6 +42,7 @@ I use starship.rs as my terminal prompt.
 ## Notes
 
 - set a udev rule to chgrp and chmod /sys/class/backlight/amdgpu_bl0/backlight.
+- lock screen blurring needs `scrot` (screenshot utility) and `convert` (imagemagick utility for blurring)
 
 ## Todo
 
