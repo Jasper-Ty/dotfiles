@@ -1,10 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-#
-# something is up with my udev rule, so disabling this for now
+# Something is wrong with my udev setup-- disabling this script for now
 exit
-# 
-#
 
 MAIN=eDP
 OUTPUT=HDMI-A-0
@@ -12,7 +9,7 @@ OUTPUT=HDMI-A-0
 export DISPLAY=:0
 
 xrandr | grep "$OUTPUT connected"
-if [[ $? == 0 ]]; then
+if [ $? -eq 0 ]; then
     xrandr --output $OUTPUT --above $MAIN --auto
     notify-send 'Monitor plugged in'
 else
