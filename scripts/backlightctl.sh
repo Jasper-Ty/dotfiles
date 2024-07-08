@@ -1,16 +1,16 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Basic backlight brightness control tool.
 
 CARD="/sys/class/backlight/amdgpu_bl0"
-if ! [[ -d "$CARD" ]] 
+if ! [ -d "$CARD" ] 
 then
     echo "Cannot find backlight device"
     exit
 fi
 
 BRIGHTNESS="$CARD/brightness"
-if ! [[ -w "$BRIGHTNESS" ]] 
+if ! [ -w "$BRIGHTNESS" ] 
 then
     echo "Do not have permissions to change brightness."
     exit
@@ -22,9 +22,9 @@ MAX=$( cat "$CARD/max_brightness" )
 VERB=$1
 AMT=$2
 
-if [[ $VERB = "set" ]]
+if [ "$VERB" = "set" ]
 then
-    if [[ $AMT -le $MAX ]] && [[ $AMT -ge 0 ]]
+    if [ $AMT -le $MAX ] && [ $AMT -ge 0 ]
     then
         echo $AMT > "$BRIGHTNESS"
     else
@@ -33,7 +33,7 @@ then
     exit
 fi 
 
-if [[ $VERB = "up" ]]
+if [ "$VERB" = "up" ]
 then
     RES=$( expr $CUR + $AMT )
 
@@ -41,11 +41,11 @@ then
     echo $RES
     echo $AMT
 
-    if [[ $RES -le 0 ]]
+    if [ $RES -le 0 ]
     then
         RES=0
     fi
-    if [[ $RES -ge $MAX ]]
+    if [ $RES -ge $MAX ]
     then
         RES=$MAX
     fi
@@ -53,14 +53,14 @@ then
     exit
 fi
 
-if [[ $VERB = "down" ]]
+if [ "$VERB" = "down" ]
 then
     let "RES = $CUR - $AMT"
-    if [[ $RES -le 0 ]]
+    if [ $RES -le 0 ]
     then
         RES=0
     fi
-    if [[ $RES -ge $MAX ]]
+    if [ $RES -ge $MAX ]
     then
         RES=$MAX
     fi
