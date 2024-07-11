@@ -7,6 +7,12 @@
 % Garamond font
 \newif\ifgaramond
 \DeclareOption{garamond}{\garamondtrue}
+
+% Tableau
+\newif\iftableau
+\DeclareOption{tableau}{\tableautrue}
+
+% Done
 \ProcessOptions
 
 
@@ -31,13 +37,6 @@
 \RequirePackage{url}      % \url command
 \RequirePackage{booktabs} % Table optimizations
 \RequirePackage{enumitem} % More enumerate-style environments
-
-
-% == Use E.B Garamond font ===================================================
-\ifgaramond
-    \RequirePackage{ebgaramond}
-    \RequirePackage{ebgaramond-maths}
-\fi
 
 
 % == Math fonts ==============================================================
@@ -137,6 +136,8 @@
 \newcommand\hide[1]{}
 % horizontal rule
 \newcommand\hr{\noindent\rule[0.5ex]{\linewidth}{0.5pt}}
+% todo
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}\PackageWarning{TODO:}{#1!}}
 
 
 % == Geometry =================================================================
@@ -185,6 +186,18 @@
   \thm@preskip=\parskip \thm@postskip=0pt
 }
 \makeatother
+
+
+% == Use E.B Garamond font ===================================================
+\ifgaramond
+    \usepackage[ebgaramond]{newtx}
+\fi
+
+
+% == Use tableaux ============================================================
+\iftableau
+    \usepackage{ytableau}
+\fi
 
 
 % == DONE! ====================================================================
