@@ -43,16 +43,6 @@ require("lazy").setup({
                 conceallevel = 2,
                 math_bounds = 1,
             }
-            vim.g.vimtex_compiler_latexmk = {
-                aux_dir = 'aux',
-                out_dir = 'out',
-                options = {
-                    '-verbose',
-                    '-file-line-error',
-                    '-interaction=nonstopmode',
-                    '-shell-escape',
-                },
-            }
         end,
     },
 
