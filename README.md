@@ -15,6 +15,7 @@ This setup is partially replicated on my Desktop PC, my Raspberry Pi, and on a V
 ## Info
 
 - **OS:** Ubuntu 22.04 LTS
+- **Font**: [Mononoki](https://github.com/madmalik/mononoki) [Nerd Font](https://www.nerdfonts.com/)
 - **Window Manager:** [i3](https://i3wm.org/)
 - **Status Bars:** [polybar](https://github.com/polybar/polybar)
 - **Terminal:** [alacritty](https://github.com/alacritty/alacritty)
