@@ -39,12 +39,7 @@
 \RequirePackage{enumitem} % More enumerate-style environments
 
 
-% == Math fonts ==============================================================
-\RequirePackage{amsfonts, amssymb, mathrsfs}
-
-% Bold math
-\RequirePackage{bm}
-% Some shortcuts
+% == Some shortcuts ==========================================================
 \newcommand\NN{\ensuremath{\mathbb{N}}}
 \newcommand\RR{\ensuremath{\mathbb{R}}}
 \newcommand\ZZ{\ensuremath{\mathbb{Z}}}
@@ -59,67 +54,83 @@
 % These are all based on Darij Grinberg's environment setup
 % https://www.cip.ifi.lmu.de/~grinberg/index.html
 \RequirePackage{framed}
+
 \theoremstyle{definition}
+
 \newtheorem{theo}{Theorem}[subsection]
-\newtheorem{exer}{Exercise}[subsection]
+\newtheorem*{theo*}{Theorem}
 \newenvironment{theorem}[1][]
 {\begin{theo}[#1]\begin{leftbar}}
 {\end{leftbar}\end{theo}}
+\newenvironment{theorem*}[1][]
+{\begin{theo*}[#1]\begin{leftbar}}
+{\end{leftbar}\end{theo*}}
+
 \newtheorem{lem}[theo]{Lemma}
 \newenvironment{lemma}[1][]
 {\begin{lem}[#1]\begin{leftbar}}
 {\end{leftbar}\end{lem}}
+
 \newtheorem{prop}[theo]{Proposition}
 \newenvironment{proposition}[1][]
 {\begin{prop}[#1]\begin{leftbar}}
 {\end{leftbar}\end{prop}}
+
 \newtheorem{defi}[theo]{Definition}
 \newenvironment{definition}[1][]
 {\begin{defi}[#1]\begin{leftbar}}
 {\end{leftbar}\end{defi}}
+
 \newtheorem{remk}[theo]{Remark}
 \newenvironment{remark}[1][]
 {\begin{remk}[#1]\begin{leftbar}}
 {\end{leftbar}\end{remk}}
+
 \newtheorem{coro}[theo]{Corollary}
 \newenvironment{corollary}[1][]
 {\begin{coro}[#1]\begin{leftbar}}
 {\end{leftbar}\end{coro}}
+
 \newtheorem{conv}[theo]{Convention}
 \newenvironment{convention}[1][]
 {\begin{conv}[#1]\begin{leftbar}}
 {\end{leftbar}\end{conv}}
+
 \newtheorem{quest}[theo]{Question}
 \newenvironment{question}[1][]
 {\begin{quest}[#1]\begin{leftbar}}
 {\end{leftbar}\end{quest}}
+
 \newtheorem{warn}[theo]{Warning}
 \newenvironment{warning}[1][]
 {\begin{warn}[#1]\begin{leftbar}}
 {\end{leftbar}\end{warn}}
+
 \newtheorem{conj}[theo]{Conjecture}
 \newenvironment{conjecture}[1][]
 {\begin{conj}[#1]\begin{leftbar}}
 {\end{leftbar}\end{conj}}
+
 \newtheorem{exam}[theo]{Example}
 \newenvironment{example}[1][]
 {\begin{exam}[#1]\begin{leftbar}}
 {\end{leftbar}\end{exam}}
-\newtheorem{exmp}[exer]{Exercise}
+
+\newtheorem{exer}[theo]{Exercise}
 \newenvironment{exercise}[1][]
-{\begin{exmp}[#1]\begin{leftbar}}
-{\end{leftbar}\end{exmp}}
+{\begin{exer}[#1]\begin{leftbar}}
+{\end{leftbar}\end{exer}}
+
 \newenvironment{statement}{\begin{quote}}{\end{quote}}
 \newenvironment{fineprint}{\begin{small}}{\end{small}}
-
 
 % == Links ====================================================================
 \RequirePackage{hyperref}
 \hypersetup{
     colorlinks,
-    citecolor=black,
+    citecolor=red,
     filecolor=black,
-    linkcolor=black
+    linkcolor=purple
 }
 
 
@@ -157,13 +168,16 @@
 
 % Page numbers bottom right
 \fancyfoot{}
+\fancyfootoffset[R]{5pt}
 \fancyfoot[R]{\thepage}
 
 % Sets up title top left my name top right
+\fancyheadoffset[L]{12pt}
+\renewcommand{\headrulewidth}{0pt}
 \newcommand{\titleauthorhead}{
     \makeatletter
-    \fancyhead[L]{\@title}
-    \fancyhead[R]{\@author}
+    \fancyhead[L]{\textsc{\@title}}
+    \fancyhead[R]{\textsc{\@author}}
     \makeatother
 }
 
