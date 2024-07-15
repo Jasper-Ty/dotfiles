@@ -10,4 +10,4 @@ symlink "latex/proofcat.sty" "$TEXMFHOME/tex/latex/jaspercommon/proofcat.sty"
 texhash $TEXMFHOME
 
 # install .latexmkrc
-symlink "latex/proofcat.sty" "$HOME/.latexmkrc"
+symlink "latex/.latexmkrc" "$HOME/.latexmkrc"
