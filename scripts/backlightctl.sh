@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 # Basic backlight brightness control tool.
 
@@ -37,10 +37,6 @@ if [ "$VERB" = "up" ]
 then
     RES=$( expr $CUR + $AMT )
 
-    echo $CUR
-    echo $RES
-    echo $AMT
-
     if [ $RES -le 0 ]
     then
         RES=0
@@ -55,7 +51,8 @@ fi
 
 if [ "$VERB" = "down" ]
 then
-    let "RES = $CUR - $AMT"
+    RES=$( expr $CUR - $AMT )
+
     if [ $RES -le 0 ]
     then
         RES=0
