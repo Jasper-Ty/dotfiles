@@ -39,6 +39,7 @@ require("lazy").setup({
             vim.opt_local.conceallevel = 2
             vim.g.vimtex_view_method = "zathura"
             vim.g.vimtex_compiler_method = "latexmk"
+            vim.g.vimtex_compiler_method = "latexmk"
             vim.g.vimtex_syntax_conceal = {
                 conceallevel = 2,
                 math_bounds = 1,
@@ -161,6 +162,5 @@ require("lazy").setup({
         end,
     },
 
-    -- sage
-    "petRUShka/vim-sage"
+
 })
