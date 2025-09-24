@@ -2,7 +2,7 @@
 
 # Basic backlight brightness control tool.
 
-CARD="/sys/class/backlight/amdgpu_bl0"
+CARD="/sys/class/backlight/amdgpu_bl1"
 if ! [ -d "$CARD" ] 
 then
     echo "Cannot find backlight device"
