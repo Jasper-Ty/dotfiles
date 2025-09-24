@@ -10,8 +10,6 @@ This is still very much a work in progress! Hope to iron this out in grad school
 
 This setup is partially replicated on my Desktop PC, my Raspberry Pi, and on a VPS I maintain.
 
-**I'm planning to switch to Arch Linux this summer**
-
 ## Info
 
 - **OS:** Ubuntu 22.04 LTS
@@ -47,7 +45,7 @@ I use starship.rs as my terminal prompt.
 
 ## Todo
 
+- Start ssh-agent in login session
 - Tmux / Zellij stuff
-- fix system tray bug, unresponsive?
 - fix monitor udev rule and script
 - have a special workspace for external monitor
