@@ -1,7 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{jaspercommon}[Jasper's Common LaTeX Stuff]
-\pdfminorversion=7
 
+% == Which engine am I running? ===============================================
+\RequirePackage{iftex}
 
 % == Options ==================================================================
 % Garamond font
@@ -12,23 +13,28 @@
 \newif\iftableau
 \DeclareOption{tableau}{\tableautrue}
 
+% Whether to number based on subsections or not 
+\newif\ifnosubsections
+\DeclareOption{nosubsections}{\nosubsectionstrue}
+
 % Done
 \ProcessOptions
 
 
-% == Font encoding stuff ======================================================
+% == Font stuff ======================================================
 % \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{textcomp}
 
 
 % == Math stuff ==============================================================
-\RequirePackage{amsmath, mathtools, amsthm}
+\RequirePackage{amsmath, mathtools, amsthm, amssymb}
+\allowdisplaybreaks
 
 
 % == Graphics =================================================================
 \RequirePackage{graphicx} % Mostly needed for \includegraphics{_}. 
-\RequirePackage{xcolor}
+\RequirePackage[svgnames]{xcolor}
 \RequirePackage{tikz}
 % \RequirePackage{pgfplots}
 
@@ -36,8 +42,10 @@
 % == Little things ============================================================
 \RequirePackage{url}      % \url command
 \RequirePackage{booktabs} % Table optimizations
-\RequirePackage{enumitem} % More enumerate-style environments
+\RequirePackage[inline]{enumitem} % More enumerate-style environments
 
+
+% == Use E.B Garamond font ====================================================
 
 % == Some shortcuts ==========================================================
 \newcommand\NN{\ensuremath{\mathbb{N}}}
@@ -48,78 +56,46 @@
 \newcommand\QQ{\ensuremath{\mathbb{Q}}}
 \newcommand\CC{\ensuremath{\mathbb{C}}}
 \newcommand\KK{\ensuremath{\mathbb{K}}}
+\newcommand\FF{\ensuremath{\mathbb{F}}}
 
 
 % == Environments ============================================================
-% These are all based on Darij Grinberg's environment setup
+% Inspired by Darij Grinberg's environment setup
 % https://www.cip.ifi.lmu.de/~grinberg/index.html
 \RequirePackage{framed}
 
-\theoremstyle{definition}
+% #1 - counter
+% #2 - section/subsection/subsubsection ...
+% #3 - environment name
+% #4 - text
+\NewDocumentCommand\barenv{o o m m}
+{
+    \theoremstyle{definition}
+    \IfNoValueTF{#1}{
+        \IfNoValueTF{#2}{
+            \newtheorem{bar#3}{#4}
+        }{
+            \newtheorem{bar#3}{#4}[#2]
+        }
+    }{
+        \IfNoValueTF{#2}{
+            \newtheorem{bar#3}[#1]{#4}
+        }{
+            \newtheorem{bar#3}[#1]{#4}[#2]
+        }
+    }
 
-\newtheorem{theo}{Theorem}[subsection]
-\newtheorem*{theo*}{Theorem}
-\newenvironment{theorem}[1][]
-{\begin{theo}[#1]\begin{leftbar}}
-{\end{leftbar}\end{theo}}
-\newenvironment{theorem*}[1][]
-{\begin{theo*}[#1]\begin{leftbar}}
-{\end{leftbar}\end{theo*}}
+    % Unstarred version
+    \newenvironment{#3}[1][]
+    {\begin{bar#3}[##1]\begin{leftbar}}
+    {\end{leftbar}\end{bar#3}}
 
-\newtheorem{lem}[theo]{Lemma}
-\newenvironment{lemma}[1][]
-{\begin{lem}[#1]\begin{leftbar}}
-{\end{leftbar}\end{lem}}
-
-\newtheorem{prop}[theo]{Proposition}
-\newenvironment{proposition}[1][]
-{\begin{prop}[#1]\begin{leftbar}}
-{\end{leftbar}\end{prop}}
-
-\newtheorem{defi}[theo]{Definition}
-\newenvironment{definition}[1][]
-{\begin{defi}[#1]\begin{leftbar}}
-{\end{leftbar}\end{defi}}
-
-\newtheorem{remk}[theo]{Remark}
-\newenvironment{remark}[1][]
-{\begin{remk}[#1]\begin{leftbar}}
-{\end{leftbar}\end{remk}}
-
-\newtheorem{coro}[theo]{Corollary}
-\newenvironment{corollary}[1][]
-{\begin{coro}[#1]\begin{leftbar}}
-{\end{leftbar}\end{coro}}
-
-\newtheorem{conv}[theo]{Convention}
-\newenvironment{convention}[1][]
-{\begin{conv}[#1]\begin{leftbar}}
-{\end{leftbar}\end{conv}}
-
-\newtheorem{quest}[theo]{Question}
-\newenvironment{question}[1][]
-{\begin{quest}[#1]\begin{leftbar}}
-{\end{leftbar}\end{quest}}
-
-\newtheorem{warn}[theo]{Warning}
-\newenvironment{warning}[1][]
-{\begin{warn}[#1]\begin{leftbar}}
-{\end{leftbar}\end{warn}}
-
-\newtheorem{conj}[theo]{Conjecture}
-\newenvironment{conjecture}[1][]
-{\begin{conj}[#1]\begin{leftbar}}
-{\end{leftbar}\end{conj}}
-
-\newtheorem{exam}[theo]{Example}
-\newenvironment{example}[1][]
-{\begin{exam}[#1]\begin{leftbar}}
-{\end{leftbar}\end{exam}}
-
-\newtheorem{exer}[theo]{Exercise}
-\newenvironment{exercise}[1][]
-{\begin{exer}[#1]\begin{leftbar}}
-{\end{leftbar}\end{exer}}
+    % Starred version
+    \newtheorem*{bar#3*}{#4}
+    \newenvironment{#3*}[1][]
+    {\begin{bar#3*}[##1]\begin{leftbar}}
+    {\end{leftbar}\end{bar#3*}}
+}
 
 \newenvironment{statement}{\begin{quote}}{\end{quote}}
 \newenvironment{fineprint}{\begin{small}}{\end{small}}
@@ -130,7 +106,8 @@
     colorlinks,
     citecolor=red,
     filecolor=black,
-    linkcolor=purple
+    linkcolor=purple,
+    hypertexnames=false
 }
 
 
@@ -142,13 +119,241 @@
 \postauthor{\end{flushright}}
 
 
+% == Title setup =============================================================
+\RequirePackage[ebgaramond]{newtx}
+
+
 % == Miscellaneous helper commands ===========================================
+% arxiv
+\newcommand\arxiv[1]{\href{http://www.arxiv.org/abs/#1}{\texttt{arXiv:#1}}}
+% definition 
+\newcommand{\defstyle}[1]{{\color{DarkViolet}\textbf{\textsf{#1}}}}
 % hide 
 \newcommand\hide[1]{}
 % horizontal rule
 \newcommand\hr{\noindent\rule[0.5ex]{\linewidth}{0.5pt}}
-% todo
-\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}\PackageWarning{TODO:}{#1!}}
+% wildcard
+\newcommand*\wc{{\mkern 0.5mu-\mkern 0.5mu}}
+% script letters
+\newcommand{\scrA}{\mathscr{A}}
+\newcommand{\scrB}{\mathscr{B}}
+\newcommand{\scrC}{\mathscr{C}}
+\newcommand{\scrD}{\mathscr{D}}
+\newcommand{\scrE}{\mathscr{E}}
+\newcommand{\scrF}{\mathscr{F}}
+\newcommand{\scrG}{\mathscr{G}}
+\newcommand{\scrH}{\mathscr{H}}
+\newcommand{\scrI}{\mathscr{I}}
+\newcommand{\scrJ}{\mathscr{J}}
+\newcommand{\scrK}{\mathscr{K}}
+\newcommand{\scrL}{\mathscr{L}}
+\newcommand{\scrM}{\mathscr{M}}
+\newcommand{\scrN}{\mathscr{N}}
+\newcommand{\scrO}{\mathscr{O}}
+\newcommand{\scrP}{\mathscr{P}}
+\newcommand{\scrQ}{\mathscr{Q}}
+\newcommand{\scrR}{\mathscr{R}}
+\newcommand{\scrS}{\mathscr{S}}
+\newcommand{\scrT}{\mathscr{T}}
+\newcommand{\scrU}{\mathscr{U}}
+\newcommand{\scrV}{\mathscr{V}}
+\newcommand{\scrW}{\mathscr{W}}
+\newcommand{\scrX}{\mathscr{X}}
+\newcommand{\scrY}{\mathscr{Y}}
+\newcommand{\scrZ}{\mathscr{Z}}
+
+% bf letters
+\newcommand{\bfA}{\ensuremath{\mathbf{A}}}
+\newcommand{\bfB}{\ensuremath{\mathbf{B}}}
+\newcommand{\bfC}{\ensuremath{\mathbf{C}}}
+\newcommand{\bfD}{\ensuremath{\mathbf{D}}}
+\newcommand{\bfE}{\ensuremath{\mathbf{E}}}
+\newcommand{\bfF}{\ensuremath{\mathbf{F}}}
+\newcommand{\bfG}{\ensuremath{\mathbf{G}}}
+\newcommand{\bfH}{\ensuremath{\mathbf{H}}}
+\newcommand{\bfI}{\ensuremath{\mathbf{I}}}
+\newcommand{\bfJ}{\ensuremath{\mathbf{J}}}
+\newcommand{\bfK}{\ensuremath{\mathbf{K}}}
+\newcommand{\bfL}{\ensuremath{\mathbf{L}}}
+\newcommand{\bfM}{\ensuremath{\mathbf{M}}}
+\newcommand{\bfN}{\ensuremath{\mathbf{N}}}
+\newcommand{\bfO}{\ensuremath{\mathbf{O}}}
+\newcommand{\bfP}{\ensuremath{\mathbf{P}}}
+\newcommand{\bfQ}{\ensuremath{\mathbf{Q}}}
+\newcommand{\bfR}{\ensuremath{\mathbf{R}}}
+\newcommand{\bfS}{\ensuremath{\mathbf{S}}}
+\newcommand{\bfT}{\ensuremath{\mathbf{T}}}
+\newcommand{\bfU}{\ensuremath{\mathbf{U}}}
+\newcommand{\bfV}{\ensuremath{\mathbf{V}}}
+\newcommand{\bfW}{\ensuremath{\mathbf{W}}}
+\newcommand{\bfX}{\ensuremath{\mathbf{X}}}
+\newcommand{\bfY}{\ensuremath{\mathbf{Y}}}
+\newcommand{\bfZ}{\ensuremath{\mathbf{Z}}}
+
+\newcommand{\bfa}{\ensuremath{\mathbf{a}}}
+\newcommand{\bfb}{\ensuremath{\mathbf{b}}}
+\newcommand{\bfc}{\ensuremath{\mathbf{c}}}
+\newcommand{\bfd}{\ensuremath{\mathbf{d}}}
+\newcommand{\bfe}{\ensuremath{\mathbf{e}}}
+\newcommand{\bff}{\ensuremath{\mathbf{f}}}
+\newcommand{\bfg}{\ensuremath{\mathbf{g}}}
+\newcommand{\bfh}{\ensuremath{\mathbf{h}}}
+\newcommand{\bfi}{\ensuremath{\mathbf{i}}}
+\newcommand{\bfj}{\ensuremath{\mathbf{j}}}
+\newcommand{\bfk}{\ensuremath{\mathbf{k}}}
+\newcommand{\bfl}{\ensuremath{\mathbf{l}}}
+\newcommand{\bfm}{\ensuremath{\mathbf{m}}}
+\newcommand{\bfn}{\ensuremath{\mathbf{n}}}
+\newcommand{\bfo}{\ensuremath{\mathbf{o}}}
+\newcommand{\bfp}{\ensuremath{\mathbf{p}}}
+\newcommand{\bfq}{\ensuremath{\mathbf{q}}}
+\newcommand{\bfr}{\ensuremath{\mathbf{r}}}
+\newcommand{\bfs}{\ensuremath{\mathbf{s}}}
+\newcommand{\bft}{\ensuremath{\mathbf{t}}}
+\newcommand{\bfu}{\ensuremath{\mathbf{u}}}
+\newcommand{\bfv}{\ensuremath{\mathbf{v}}}
+\newcommand{\bfw}{\ensuremath{\mathbf{w}}}
+\newcommand{\bfx}{\ensuremath{\mathbf{x}}}
+\newcommand{\bfy}{\ensuremath{\mathbf{y}}}
+\newcommand{\bfz}{\ensuremath{\mathbf{z}}}
+
+% cal letters
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calH}{\mathcal{H}}
+\newcommand{\calI}{\mathcal{I}}
+\newcommand{\calJ}{\mathcal{J}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calQ}{\mathcal{Q}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calU}{\mathcal{U}}
+\newcommand{\calV}{\mathcal{V}}
+\newcommand{\calW}{\mathcal{W}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\calY}{\mathcal{Y}}
+\newcommand{\calZ}{\mathcal{Z}}
+
+% ul letters
+\newcommand{\ulA}{\underline{A}}
+\newcommand{\ulB}{\underline{B}}
+\newcommand{\ulC}{\underline{C}}
+\newcommand{\ulD}{\underline{D}}
+\newcommand{\ulE}{\underline{E}}
+\newcommand{\ulF}{\underline{F}}
+\newcommand{\ulG}{\underline{G}}
+\newcommand{\ulH}{\underline{H}}
+\newcommand{\ulI}{\underline{I}}
+\newcommand{\ulJ}{\underline{J}}
+\newcommand{\ulK}{\underline{K}}
+\newcommand{\ulL}{\underline{L}}
+\newcommand{\ulM}{\underline{M}}
+\newcommand{\ulN}{\underline{N}}
+\newcommand{\ulO}{\underline{O}}
+\newcommand{\ulP}{\underline{P}}
+\newcommand{\ulQ}{\underline{Q}}
+\newcommand{\ulR}{\underline{R}}
+\newcommand{\ulS}{\underline{S}}
+\newcommand{\ulT}{\underline{T}}
+\newcommand{\ulU}{\underline{U}}
+\newcommand{\ulV}{\underline{V}}
+\newcommand{\ulW}{\underline{W}}
+\newcommand{\ulX}{\underline{X}}
+\newcommand{\ulY}{\underline{Y}}
+\newcommand{\ulZ}{\underline{Z}}
+
+\newcommand{\ula}{\ensuremath{\underline{a}}}
+\newcommand{\ulb}{\ensuremath{\underline{b}}}
+\newcommand{\ulc}{\ensuremath{\underline{c}}}
+\newcommand{\uld}{\ensuremath{\underline{d}}}
+\newcommand{\ule}{\ensuremath{\underline{e}}}
+\newcommand{\ulf}{\ensuremath{\underline{f}}}
+\newcommand{\ulg}{\ensuremath{\underline{g}}}
+\newcommand{\ulh}{\ensuremath{\underline{h}}}
+\newcommand{\uli}{\ensuremath{\underline{i}}}
+\newcommand{\ulj}{\ensuremath{\underline{j}}}
+\newcommand{\ulk}{\ensuremath{\underline{k}}}
+\newcommand{\ull}{\ensuremath{\underline{l}}}
+\newcommand{\ulm}{\ensuremath{\underline{m}}}
+\newcommand{\uln}{\ensuremath{\underline{n}}}
+\newcommand{\ulo}{\ensuremath{\underline{o}}}
+\newcommand{\ulp}{\ensuremath{\underline{p}}}
+\newcommand{\ulq}{\ensuremath{\underline{q}}}
+\newcommand{\ulr}{\ensuremath{\underline{r}}}
+\newcommand{\uls}{\ensuremath{\underline{s}}}
+\newcommand{\ult}{\ensuremath{\underline{t}}}
+\newcommand{\ulu}{\ensuremath{\underline{u}}}
+\newcommand{\ulv}{\ensuremath{\underline{v}}}
+\newcommand{\ulw}{\ensuremath{\underline{w}}}
+\newcommand{\ulx}{\ensuremath{\underline{x}}}
+\newcommand{\uly}{\ensuremath{\underline{y}}}
+\newcommand{\ulz}{\ensuremath{\underline{z}}}
+
+% sans-serif
+\newcommand{\sfA}{\ifmmode\mathsf{A}\else\textsf{A}\fi}
+\newcommand{\sfB}{\textsf{B}}
+\newcommand{\sfC}{\textsf{C}}
+\newcommand{\sfD}{\textsf{D}}
+\newcommand{\sfE}{\textsf{E}}
+\newcommand{\sfF}{\textsf{F}}
+\newcommand{\sfG}{\textsf{G}}
+\newcommand{\sfH}{\textsf{H}}
+\newcommand{\sfI}{\textsf{I}}
+\newcommand{\sfJ}{\textsf{J}}
+\newcommand{\sfK}{\textsf{K}}
+\newcommand{\sfL}{\textsf{L}}
+\newcommand{\sfM}{\textsf{M}}
+\newcommand{\sfN}{\textsf{N}}
+\newcommand{\sfO}{\textsf{O}}
+\newcommand{\sfP}{\textsf{P}}
+\newcommand{\sfQ}{\textsf{Q}}
+\newcommand{\sfR}{\textsf{R}}
+\newcommand{\sfS}{\textsf{S}}
+\newcommand{\sfT}{\textsf{T}}
+\newcommand{\sfU}{\textsf{U}}
+\newcommand{\sfV}{\textsf{V}}
+\newcommand{\sfW}{\textsf{W}}
+\newcommand{\sfX}{\textsf{X}}
+\newcommand{\sfY}{\textsf{Y}}
+\newcommand{\sfZ}{\textsf{Z}}
+
+\newcommand{\sfa}{\textsf{a}}
+\newcommand{\sfb}{\textsf{b}}
+\newcommand{\sfc}{\textsf{c}}
+\newcommand{\sfd}{\textsf{d}}
+\newcommand{\sfe}{\textsf{e}}
+\newcommand{\sff}{\textsf{f}}
+\newcommand{\sfg}{\textsf{g}}
+\newcommand{\sfh}{\textsf{h}}
+\newcommand{\sfi}{\textsf{i}}
+\newcommand{\sfj}{\textsf{j}}
+\newcommand{\sfk}{\textsf{k}}
+\newcommand{\sfl}{\textsf{l}}
+\newcommand{\sfm}{\textsf{m}}
+\newcommand{\sfn}{\textsf{n}}
+\newcommand{\sfo}{\textsf{o}}
+\newcommand{\sfp}{\textsf{p}}
+\newcommand{\sfq}{\textsf{q}}
+\newcommand{\sfr}{\textsf{r}}
+\newcommand{\sfs}{\textsf{s}}
+\newcommand{\sft}{\textsf{t}}
+\newcommand{\sfu}{\textsf{u}}
+\newcommand{\sfv}{\textsf{v}}
+\newcommand{\sfw}{\textsf{w}}
+\newcommand{\sfx}{\textsf{x}}
+\newcommand{\sfy}{\textsf{y}}
+\newcommand{\sfz}{\textsf{z}}
 
 
 % == Geometry =================================================================
@@ -189,11 +394,11 @@
 \RequirePackage{subcaption}
 % Better tables
 \RequirePackage{tabls}
+% Cancelling out
+\usepackage[thicklines]{cancel}
 
 
 % == Hacky nonsense I don't understand follows (thanks stackexchange!) ========
-% %http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
-\pdfsuppresswarningpagegroup=1
 % http://tex.stackexchange.com/questions/22119/how-can-i-change-the-spacing-before-theorems-with-amsthm
 \makeatletter
 \def\thm@space@setup{%
@@ -201,16 +406,19 @@
 }
 \makeatother
 
-
-% == Use E.B Garamond font ===================================================
-\ifgaramond
-    \usepackage[ebgaramond]{newtx}
-\fi
-
+% I hate fonts!!!!
 
 % == Use tableaux ============================================================
 \iftableau
     \usepackage{ytableau}
+    \ytableausetup{centertableaux}
+    \newcommand{\ytabalign}[1]{\ytableausetup{aligntableaux=#1}}
+    \newcommand{\ytabboxsize}[1]{\ytableausetup{boxsize=#1}}
+    \newcommand{\ytabsmallbox}{\ytabboxsize{10pt}}
+    \newcommand{\ytabnormalbox}{\ytabboxsize{normal}}
+    \newcommand{\ytabbigbox}{\ytabboxsize{20pt}}
+    \newcommand{\ytabmathmode}{\ytableausetup{mathmode}}
+    \newcommand{\ytabtextmode}{\ytableausetup{textmode}}
 \fi
 
 
