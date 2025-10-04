@@ -1,9 +1,16 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-. $DOTFILES/scripts/colors.sh
+# Get dotfiles dir 
+if ! [[ -v DOTFILES ]]
+then
+    export DOTFILES
+    DOTFILES="$(realpath "$(dirname "$(realpath "$0")")/..")"
+fi
+
+source $DOTFILES/scripts/colors.sh
 
 log_error() {
-    echo $1 > /tmp/dotfiles_install_errors
+    echo $1 | tee -a /tmp/dotfiles_install_errors >&2
 }
 
 report_errors() {
@@ -20,7 +27,7 @@ report_errors() {
 
 install_package() {
     local PKG=$1
-    dpkg-query -s $PKG > /dev/null 2>&1
+    dpkg-query -s $PKG >/dev/null 2>&1
     if [ $? -ne 0 ]; then
         sudo apt-get install $PKG
         if [ $? -ne 0 ]; then
@@ -36,8 +43,7 @@ symlink() {
     local SOURCE_FILE=$1
     local TARGET_FILE=$2
 
-    SOURCE_FILE=$( realpath $DOTFILES/$SOURCE_FILE )
-    rm -rf $TARGET_FILE 2>&1 > /dev/null
+    rm -rf $TARGET_FILE >/dev/null 2>&1
 
     ln -sfv "$SOURCE_FILE" "$TARGET_FILE" 
     if [ $? -ne 0 ]; then
@@ -45,10 +51,8 @@ symlink() {
     fi
 }
 
-alias hascommand='command -v &>/dev/null'
-
 aliasif() {
     local CMD=$2
     local ALIAS=$1
-    hascommand $CMD && alias $ALIAS=$CMD
+    command -v "$CMD" &>/dev/null && alias $ALIAS=$CMD
 }

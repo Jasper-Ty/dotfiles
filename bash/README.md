@@ -1,6 +1,2 @@
 # bash 
 
-## Prerequisites
-
-- lsd
-- bat

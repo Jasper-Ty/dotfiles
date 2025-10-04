@@ -1,14 +1,16 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-. $DOTFILES/scripts/helpers.sh
+# Get dotfiles dir and load helper functions
+if ! [[ -v DOTFILES ]]
+then
+    export DOTFILES
+    DOTFILES="$(realpath "$(dirname "$(realpath "$0")")/..")"
+fi
+source $DOTFILES/scripts/helpers.sh
 
-fonts_dir=$( cd "$( dirname "$0" )" && pwd )
-
+# I don't remember how this works
+fonts_dir="$DOTFILES/fonts"
 find_command="find \"$fonts_dir\" \( -name '*.[o,t]tf' -or -name '*.pcf.gz' \) -type f -print0"
-
 eval $find_command | xargs -0 -I % cp "%" "$HOME/.fonts"
 
-if command -v fc-cache > /dev/null;
-then
-    fc-cache -f "$HOME/.fonts"
-fi
+fc-cache -f "$HOME/.fonts"

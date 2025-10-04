@@ -4,13 +4,13 @@
 # This script runs whenever my laptop goes to sleep.
 
 # take a screenshot
-scrot /tmp/screenshot.png
+maim /tmp/lock_screen_screenshot.png
 
 # blur
-convert /tmp/screenshot.png -blur 0x8 /tmp/screenshot.png
+convert /tmp/lock_screen_screenshot.png -blur 0x8 /tmp/lock_screen_screenshot.png
 
 # run i3lock with blurred screenshot as image
-i3lock -u -e -n -i /tmp/screenshot.png
+i3lock -u -e -n -i /tmp/lock_screen_screenshot.png
 
 # delete screenshot after
-rm /tmp/screenshot.png
+rm /tmp/lock_screen_screenshot.png

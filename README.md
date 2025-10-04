@@ -43,9 +43,28 @@ I use starship.rs as my terminal prompt.
 - set a udev rule to chgrp and chmod /sys/class/backlight/amdgpu_bl0/backlight.
 - lock screen blurring needs `scrot` (screenshot utility) and `convert` (imagemagick utility for blurring)
 
+## Installation
+
+These files are meant to installed on a Debian.
+This was tested with a minimal Debian install.
+
+Starting with Debian, you'll need to install
+- `git`, and
+- `sudo`.
+
+Then run `./install.sh`
+
+Other programs I need but aren't installed by the scripts
+
+- [KeePassXC](https://keepassxc.org/)
+- [TeX Live](https://www.tug.org/texlive/)
+- [Neovim](https://neovim.io/)
+
+
 ## Todo
 
 - Start ssh-agent in login session
 - Tmux / Zellij stuff
 - fix monitor udev rule and script
 - have a special workspace for external monitor
+- customize notifications

@@ -1,9 +1,9 @@
 # Alacritty config
 
-I build Alacritty from source. I'm currently on 0.13.0.
+[Alacritty](https://alacritty.org/) is a configurable terminal emulator that I use.
 
 Themes are from the [Alacritty themes repository](https://github.com/alacritty/alacritty-theme).
 
 ## Notes
 
-- Alacritty **must** be installed manually-- install is a little *too* involved to be scripted (varying dependencies, post install steps, ...)
+- The install script tries to install dependencies for Debian systems according to `INSTALL.md`.

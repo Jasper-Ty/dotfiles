@@ -1,11 +1,16 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-. $DOTFILES/scripts/helpers.sh
-
-UTILITIES="felix ripgrep lsd bat bottom zellij starship"
-
-if command -v "rustup" >/dev/null 2>&1
+# Get dotfiles dir and load helper functions
+if ! [[ -v DOTFILES ]]
 then
+    export DOTFILES
+    DOTFILES="$(realpath "$(dirname "$(realpath "$0")")/..")"
+fi
+source $DOTFILES/scripts/helpers.sh
+
+if command -v "rustup" &>/dev/null
+then
+    # If rustup
     cecho "GREEN" "rustup is installed\n"
 
     cecho "PURPLE" "Updating Rust toolchain\n"
@@ -16,10 +21,13 @@ else
     cecho "RED" "rustup is not installed-- running installer\n"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
         | sh -s -- --default-toolchain stable --profile default --no-modify-path
+    . "$HOME/.cargo/env"
 fi
+
+UTILITIES="felix ripgrep lsd bat zellij starship"
 
 cecho "PURPLE" "Installing utilities\n"
 for program in $UTILITIES
 do
-    cargo install $program
+    cargo install $UTILITIES
 done

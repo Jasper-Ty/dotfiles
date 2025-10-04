@@ -1,6 +1,3 @@
-DOTFILES="$HOME/dotfiles"
-export DOTFILES
-
 shopt -s expand_aliases
 
 # If not running interactively, don't do anything
@@ -68,8 +65,6 @@ PS1='\[\e[0;92m\]\u \[\e[0;92m\]\w ▶\[\e[0m\] '
 
 # Replace ls with lsd
 alias ls="lsd"
-
-export EDITOR="nvim"
 
 # TeX Live
 PATH="/usr/local/texlive/2024/bin/x86_64-linux:$PATH"; export PATH

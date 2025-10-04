@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 can_color_output() {
     if [ -t 1 ] && [ $( tput colors ) -ge 8 ]

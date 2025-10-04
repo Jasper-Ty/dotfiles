@@ -1,5 +1,12 @@
-#!/bin/sh
-. $DOTFILES/scripts/helpers.sh
+#!/usr/bin/env bash
 
-symlink "bash/.bashrc" "$HOME/.bashrc"
-symlink "bash/.bash_profile" "$HOME/.bash_profile"
+# Get dotfiles dir and load helper functions
+if ! [[ -v DOTFILES ]]
+then
+    export DOTFILES
+    DOTFILES="$(realpath "$(dirname "$(realpath "$0")")/..")"
+fi
+source $DOTFILES/scripts/helpers.sh
+
+symlink "$DOTFILES/bash/.bashrc" "$HOME/.bashrc"
+symlink "$DOTFILES/bash/.bash_profile" "$HOME/.bash_profile"
