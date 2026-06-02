@@ -41,20 +41,6 @@ install_packages() {
     return "$status"
 }
 
-install_package() {
-    local PKG=$1
-    dpkg-query -s $PKG >/dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        sudo apt-get install $PKG
-        if [ $? -ne 0 ]; then
-            log_error "failed to install $PKG"
-        fi
-    else
-        echo "$PKG already installed"
-        return
-    fi
-}
-
 symlink() {
     local SOURCE_FILE=$1
     local TARGET_FILE=$2
