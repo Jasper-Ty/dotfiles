@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 
-# Get dotfiles dir 
-if ! [[ -v DOTFILES ]]
-then
-    export DOTFILES
-    DOTFILES="$(realpath "$(dirname "$(realpath "$0")")/..")"
-fi
-
-source $DOTFILES/scripts/colors.sh
+export DOTFILES="${DOTFILES:-$HOME/dotfiles}"
 
 log_error() {
     echo $1 | tee -a /tmp/dotfiles_install_errors >&2
@@ -16,12 +9,10 @@ log_error() {
 report_errors() {
     if [ -f /tmp/dotfiles_install_errors ]
     then
-        cecho "RED" "Found errors!\n"
-        printf "\033[0;31m"
+        echo "RED" "there were errors"
         cat /tmp/dotfiles_install_errors
-        printf "\033[0m"
     else
-        cecho "GREEN" "No errors!\n"
+        echo "GREEN" "no errors!"
     fi
 }
 
@@ -31,10 +22,10 @@ install_package() {
     if [ $? -ne 0 ]; then
         sudo apt-get install $PKG
         if [ $? -ne 0 ]; then
-            log_error "Failed to install package: $PKG"
+            log_error "failed to install $PKG"
         fi
     else
-        cecho "GREEN" "Already installed: $PKG\n"
+        echo "$PKG already installed"
         return
     fi
 }

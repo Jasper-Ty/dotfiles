@@ -1,19 +1,17 @@
 #!/usr/bin/env bash
-#
-# Get dotfiles dir and load helper functions
-if ! [[ -v DOTFILES ]]
-then
-    export DOTFILES
-    DOTFILES="$(realpath "$(dirname "$(realpath "$0")")")"
-fi
+
+export DOTFILES="${DOTFILES:-$HOME/dotfiles}"
 source $DOTFILES/scripts/helpers.sh
 
-LIST="rust alacritty i3 fish fonts polybar rofi starship"
+install_package curl
+install_package build-essentials
+
+LIST="x"
 
 for ITEM in $LIST
 do
-    cecho "GREEN" "........INSTALLING $ITEM........\n"
-    source "./$ITEM/install.sh"
+    echo "........installing $ITEM........"
+    source "$DOTFILES/$ITEM/install.sh"
 done
 
-cecho "GREEN" "DONE!\n"
+echo "DONE!"
