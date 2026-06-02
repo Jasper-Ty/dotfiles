@@ -3,8 +3,7 @@
 export DOTFILES="${DOTFILES:-$HOME/dotfiles}"
 source $DOTFILES/scripts/helpers.sh
 
-install_package xorg 
-install_package xinit 
-install_package dbus-x11 
+install_packages xorg xinit dbus-x11
+install_packages xterm
 
 symlink "$DOTFILES/x/.xinitrc" "$HOME/.xinitrc"

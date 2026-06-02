@@ -3,8 +3,7 @@
 export DOTFILES="${DOTFILES:-$HOME/dotfiles}"
 source $DOTFILES/scripts/helpers.sh
 
-install_package curl
-install_package build-essentials
+install_packages curl build-essential
 
 LIST="x"
 

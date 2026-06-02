@@ -16,6 +16,31 @@ report_errors() {
     fi
 }
 
+install_packages() {
+    local pkg
+    local status=0
+
+    echo "installing $@ ..."
+    if (($# == 0)); then
+        log_error "install_packages called with no package names"
+        return 1
+    fi
+
+    for pkg in "$@"; do
+        if dpkg-query -s "$pkg" >/dev/null 2>&1; then
+            echo "$pkg already installed"
+            continue
+        fi
+
+        if ! sudo apt-get install -- "$pkg"; then
+            log_error "failed to install $pkg"
+            status=1
+        fi
+    done
+
+    return "$status"
+}
+
 install_package() {
     local PKG=$1
     dpkg-query -s $PKG >/dev/null 2>&1
