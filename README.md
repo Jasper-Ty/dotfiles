@@ -12,7 +12,7 @@ This setup is partially replicated on my Desktop PC, my Raspberry Pi, and on a V
 
 ## Info
 
-- **OS:** Ubuntu 22.04 LTS
+- **OS:** Debian 13
 - **Font**: [Mononoki](https://github.com/madmalik/mononoki) [Nerd Font](https://www.nerdfonts.com/)
 - **Window Manager:** [i3](https://i3wm.org/)
 - **Status Bars:** [polybar](https://github.com/polybar/polybar)
@@ -20,7 +20,6 @@ This setup is partially replicated on my Desktop PC, my Raspberry Pi, and on a V
 - **Shell:** [fish](https://fishshell.com/)
 - **Text Editor:** [Neovim](https://neovim.io/)
 - **PDF Viewer:** [zathura](https://pwmt.org/projects/zathura/)
-- **Multiplexer:** [Zellij](https://zellij.dev/)
 - **Browser:** [Firefox](https://www.mozilla.org/en-US/firefox/)
 - **App Launcher:** [rofi](https://github.com/davatorium/rofi)
 - **Color Scheme:** Tokyo Night
@@ -40,7 +39,6 @@ I use starship.rs as my terminal prompt.
 
 ## Notes
 
-- set a udev rule to chgrp and chmod /sys/class/backlight/amdgpu_bl0/backlight.
 - lock screen blurring needs `scrot` (screenshot utility) and `convert` (imagemagick utility for blurring)
 
 ## Installation
@@ -53,13 +51,6 @@ Starting with Debian, you'll need to install
 - `sudo`.
 
 Then run `./install.sh`
-
-Other programs I need but aren't installed by the scripts
-
-- [KeePassXC](https://keepassxc.org/)
-- [TeX Live](https://www.tug.org/texlive/)
-- [Neovim](https://neovim.io/)
-
 
 ## Todo
 

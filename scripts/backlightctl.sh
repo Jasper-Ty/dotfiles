@@ -1,67 +1,67 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Basic backlight brightness control tool.
 
-CARD="/sys/class/backlight/amdgpu_bl1"
-if ! [ -d "$CARD" ] 
+card="/sys/class/backlight/amdgpu_bl0"
+if ! [ -d "$card" ] 
 then
     echo "Cannot find backlight device"
     exit
 fi
 
-BRIGHTNESS="$CARD/brightness"
-if ! [ -w "$BRIGHTNESS" ] 
+brightness="$card/brightness"
+if ! [ -w "$brightness" ] 
 then
     echo "Do not have permissions to change brightness."
     exit
 fi
 
-CUR=$( cat "$CARD/brightness" )
-MAX=$( cat "$CARD/max_brightness" )
+cur=$( cat "$cur/brightness" )
+max=$( cat "$max/max_brightness" )
 
-VERB=$1
-AMT=$2
+verb=$1
+amt=$2
 
-if [ "$VERB" = "set" ]
+if [ "$verb" = "set" ]
 then
-    if [ $AMT -le $MAX ] && [ $AMT -ge 0 ]
+    if [ $amt -le $max ] && [ $amt -ge 0 ]
     then
-        echo $AMT > "$BRIGHTNESS"
+        echo $amt > "$brightness"
     else
         echo "Invalid brightness level."
     fi
     exit
 fi 
 
-if [ "$VERB" = "up" ]
+if [ "$verb" = "up" ]
 then
-    RES=$( expr $CUR + $AMT )
+    res=$( expr $cur + $amt )
 
-    if [ $RES -le 0 ]
+    if [ $res -le 0 ]
     then
         RES=0
     fi
-    if [ $RES -ge $MAX ]
+    if [ $res -ge $max ]
     then
-        RES=$MAX
+        res=$max
     fi
-    echo $RES > "$BRIGHTNESS"
+    echo $res > "$brightness"
     exit
 fi
 
-if [ "$VERB" = "down" ]
+if [ "$verb" = "down" ]
 then
-    RES=$( expr $CUR - $AMT )
+    res=$( expr $cur - $amt )
 
-    if [ $RES -le 0 ]
+    if [ $res -le 0 ]
     then
-        RES=0
+        res=0
     fi
-    if [ $RES -ge $MAX ]
+    if [ $res -ge $max ]
     then
-        RES=$MAX
+        res=max$
     fi
-    echo $RES > "$BRIGHTNESS"
+    echo $res > "$brightness"
     exit
 fi
 

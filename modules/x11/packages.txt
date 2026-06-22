@@ -1,0 +1,4 @@
+xorg
+xinit
+dbus-x11
+xterm

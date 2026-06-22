@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
 
-# This script displays a background on i3 startup
+# This script displays a random background on i3 startup
 
-source "$DOTFILES/.env"
+WALLPAPER_DIR="${WALLPAPER_DIR:-$HOME/Wallpapers}"
 
-if [ -v JDE_WALLPAPER_FILE ]
-then
-    echo "WALLPAPER_FILE"
-    exec feh --bg-scale $JDE_WALLPAPER_FILE
-elif [ -v JDE_WALLPAPER_DIR ]
-then
-    echo "WALLPAPER_DIR"
-    exec feh --bg-scale $(find "$JDE_WALLPAPER_DIR" | shuf -n1)
+if [ "$#" -eq 0 ]; then
+    file=$(find "$WALLPAPER_DIR" \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" -o -iname "*.bmp" \) -type f | shuf -n1 )
+    exec feh --no-fehbg --bg-scale $file
 fi

@@ -17,7 +17,6 @@ report_errors() {
 }
 
 install_packages() {
-    local pkg
     local status=0
 
     echo "installing $@ ..."
@@ -26,13 +25,14 @@ install_packages() {
         return 1
     fi
 
+    local pkg
     for pkg in "$@"; do
         if dpkg-query -s "$pkg" >/dev/null 2>&1; then
             echo "$pkg already installed"
             continue
         fi
 
-        if ! sudo apt-get install -- "$pkg"; then
+        if ! sudo apt install -y -- "$pkg"; then
             log_error "failed to install $pkg"
             status=1
         fi
@@ -41,16 +41,39 @@ install_packages() {
     return "$status"
 }
 
-symlink() {
-    local SOURCE_FILE=$1
-    local TARGET_FILE=$2
+install_packages_txt() {
+    local pkg_file="${1:-packages.txt}"
+    local status=0
 
-    rm -rf $TARGET_FILE >/dev/null 2>&1
-
-    ln -sfv "$SOURCE_FILE" "$TARGET_FILE" 
-    if [ $? -ne 0 ]; then
-        log_error "Symlink failure: $SOURCE_FILE -> $TARGET_FILE" 1>&2
+    echo "installing from $pkg_file ..."
+    if [ ! -r $pkg_file ]; then
+        log_error "install_packages_txt called with nonexistent file"
+        return 1
     fi
+
+    local packages
+    readarray -t packages < $pkg_file
+    install_packages "${packages[@]}"
+}
+
+symlink() {
+    local src=$1
+    local tgt=$2
+
+    rm -rf $tgt >/dev/null 2>&1
+
+    ln -sfv "$src" "$tgt" 
+    if [ $? -ne 0 ]; then
+        log_error "Symlink failure: $src -> $tgt" 1>&2
+    fi
+}
+
+fence() {
+    printf %"$COLUMNS"s |tr " " "-" | lolcat
+}
+
+lolcow() {
+    echo "$1" | cowsay | lolcat
 }
 
 aliasif() {
