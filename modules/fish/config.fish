@@ -1,4 +1,5 @@
 if status is-login
+
     set fish_greeting "
     Hello! 
     Run startx to start a GUI.
@@ -11,18 +12,18 @@ else if status is-interactive
 
     # Starship
     function starship_transient_prompt_func
-        set -gx STARSHIP_CONFIG "$HOME/.config/greyed.toml"
+        set -gx STARSHIP_CONFIG "$HOME/.config/starship/greyed.toml"
         starship prompt
-        set -gx STARSHIP_CONFIG "$HOME/.config/starship.toml"
+        set -gx STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
     end
 
+    set -gx STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
     starship init fish | source
     enable_transience
 
     fish_config theme choose TokyoNight
 
-    set -gx EDITOR nvim
-    set -gx MANPATH "$MANPATH:/usr/local/texlive/2024/texmf-dist/doc/man"
-    set -gx INFOPATH "$INFOPATH:/usr/local/texlive/2024/texmf-dist/doc/info"
-    fish_add_path --path /usr/local/texlive/2024/bin/x86_64-linux
+    if command -q lsd
+        alias ls="lsd"
+    end
 end

@@ -25,5 +25,13 @@ fi
 
 # Symlink themes
 mkdir -p "$HOME/.config/fish/themes"
-symlink "$MODULE/config.fish" "$HOME/.config/fish/config.fish"
 symlink "$MODULE/themes/TokyoNight.theme" "$HOME/.config/fish/themes/TokyoNight.theme"
+
+# Config files
+symlink "$MODULE/config.fish" "$HOME/.config/fish/config.fish"
+
+CONF_DIR="$HOME/.config/fish/conf.d"
+mkdir -p $CONF_DIR
+for file in $MODULE/conf.d/*.ini; do
+    symlink $file "$CONF_DIR/$(basename $file)"
+done

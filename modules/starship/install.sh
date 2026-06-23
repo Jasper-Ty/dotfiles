@@ -6,5 +6,7 @@ MODULE="$(cd "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 cargo install starship --locked
 
-symlink "$MODULE/starship.toml" "$HOME/.config/starship.toml"
-symlink "$MODULE/greyed.toml" "$HOME/.config/greyed.toml"
+mkdir -p "$HOME/.config/starship"
+
+symlink "$MODULE/starship.toml" "$HOME/.config/starship/starship.toml"
+symlink "$MODULE/greyed.toml" "$HOME/.config/starship/greyed.toml"
