@@ -6,10 +6,6 @@
 
 This holds configs for my setup. My laptop (Thinkpad X13 Gen 2a) is the source of truth. I took lots of inspiration on the scripting side from [James Shackleford's dotfiles](https://github.com/tshack/dotfiles).
 
-This is still very much a work in progress! Hope to iron this out in grad school.
-
-This setup is partially replicated on my Desktop PC, my Raspberry Pi, and on a VPS I maintain.
-
 ## Info
 
 - **OS:** Debian 13
@@ -43,9 +39,6 @@ I use starship.rs as my terminal prompt.
 
 ## Installation
 
-These files are meant to installed on a Debian.
-This was tested with a minimal Debian install.
-
 Starting with Debian, you'll need to install
 - `git`, and
 - `sudo`.
@@ -54,8 +47,6 @@ Then run `./install.sh`
 
 ## Todo
 
-- Start ssh-agent in login session
-- Tmux / Zellij stuff
 - fix monitor udev rule and script
 - have a special workspace for external monitor
 - customize notifications
